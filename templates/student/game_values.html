@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center py-4">
+    <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+        <div class="card-body p-4">
+            <h2 class="fw-bold mb-1">🤝 El Semáforo de la Convivencia</h2>
+            <p class="text-secondary mb-0">¡Haz clic en el botón para aprender acciones buenas y cómo convivir en el colegio!</p>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4 justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div id="value-card" class="card p-4 border-5 shadow-lg rounded-5 bg-white" style="transition: all 0.3s ease; cursor: pointer;" onclick="animarTarjeta()">
+                
+                <div class="mb-3">
+                    <span id="value-badge" class="badge rounded-pill fs-6 px-4 py-2 text-white" style="font-weight: 800;">
+                        Cargando...
+                    </span>
+                </div>
+
+                <div class="img-container mb-3 bg-light rounded-4 d-flex align-items-center justify-content-center" style="height: 250px; overflow: hidden;">
+                    <img id="value-img" src="" alt="Acción de convivencia" class="img-fluid" style="max-height: 100%; object-fit: contain; border-radius: 15px;">
+                </div>
+
+                <div class="p-2">
+                    <h2 id="value-text" class="fw-black display-6 text-dark mb-2"></h2>
+                    <p id="value-desc" class="fs-5 text-muted fw-medium leading-sm"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+        <button onclick="nextValue()" class="btn btn-dark btn-lg rounded-pill px-5 shadow fw-bold">Siguiente Acción ✨</button>
+        <a href="{% url 'student_dashboard' %}" class="btn btn-primary btn-lg rounded-pill px-4 shadow fw-bold">Regresar al Inicio</a>
+    </div>
+</div>
+
+<script>
+    const vals = [
+        {
+            t: 'Respeto', 
+            img: 'respeto.jpg', 
+            desc: 'Tratar bien a los demás, aceptar las diferencias y cuidar las cosas de nuestros compañeros.', 
+            bueno: true
+        },
+        {
+            t: 'Compañerismo', 
+            img: 'coonvivencia.jpg', 
+            desc: 'Mantener una buena convivencia compartiendo felices en el salón de clases.', 
+            bueno: true
+        },
+        {
+            t: 'Cuidar a los Amigos', 
+            img: 'amistad.jpg', 
+            desc: '¡Protegemos a nuestros compañeros! Usamos las palabras mágicas y los abrazos para solucionar los problemas.', 
+            bueno: true
+        },
+        {
+            t: 'Saber Escuchar', 
+            img: 'escuchar.jpg', 
+            desc: 'Prestamos atención cuando la profesora o un compañero está hablando en clase.', 
+            bueno: true
+        },
+        {
+            t: 'Compartir', 
+            img: 'compartir.jpg', 
+            desc: 'Prestar tus juguetes o útiles escolares a quien lo necesite nos hace buenos amigos.', 
+            bueno: true
+        },
+        {
+            t: 'Obedecer', 
+            img: 'obedecerpadres.jpg', 
+            desc: 'Escuchar y hacer caso a los consejos de nuestros padres y profesores en el colegio.', 
+            bueno: true
+        },
+        {
+            t: 'Amor y Cariño', 
+            img: 'amor.jpg', 
+            desc: 'Dar un trato amable y respetuoso a todas las personas que nos rodean.', 
+            bueno: true
+        }
+    ];
+    
+    let idx = 0;
+    
+    function updateCardData() {
+        const card = document.getElementById('value-card');
+        const badge = document.getElementById('value-badge');
+        const img = document.getElementById('value-img');
+        const text = document.getElementById('value-text');
+        const desc = document.getElementById('value-desc');
+        
+        const current = vals[idx];
+
+        text.innerText = current.t;
+        desc.innerText = current.desc;
+        img.src = `{% get_static_prefix %}img/${current.img}`;
+        
+        if (current.bueno) {
+            card.style.borderColor = "#2ed573"; 
+            badge.innerText = "✅ ¡Acción Súper Buena!";
+            badge.style.backgroundColor = "#2ed573";
+            badge.style.boxShadow = "0 4px 10px rgba(46, 213, 115, 0.3)";
+        } else {
+            card.style.borderColor = "#ff4757"; 
+            badge.innerText = "⚠️ Norma Importante / Evitar";
+            badge.style.backgroundColor = "#ff4757";
+            badge.style.boxShadow = "0 4px 10px rgba(255, 71, 87, 0.3)";
+        }
+
+        animarTarjeta();
+    }
+
+    /* ⚡ GENERADOR NATIVO DE SONIDO TIPO SERPENTINA/CELEBRACIÓN (Súper rápido) */
+    function sonarSerpentina() {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        
+        // Sonido ascendente rápido y mágico
+        const ahora = ctx.currentTime;
+        
+        // Oscilador para la melodía alegre
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        osc.type = 'triangle'; // Sonido tierno e infantil tipo Nintendo
+        osc.frequency.setValueAtTime(300, ahora);
+        osc.frequency.exponentialRampToValueAtTime(900, ahora + 0.4); // Sube rápido
+        
+        gain.gain.setValueAtTime(0.15, ahora);
+        gain.gain.exponentialRampToValueAtTime(0.01, ahora + 0.4); // Desvanece suavemente
+        
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.start(ahora);
+        osc.stop(ahora + 0.4);
+    }
+
+    /* 🎙️ LOCUCIÓN EXCLUSIVA DEL TÍTULO CON PARÁMETROS INFANTILES FELICES */
+    function hablarSoloTitulo() {
+        window.speechSynthesis.cancel(); // Apaga cualquier sonido de voz previo de inmediato
+
+        const current = vals[idx];
+        // ÚNICAMENTE dice la palabra del título con entusiasmo de exclamación
+        const fraseTitulo = `¡${current.t}!`; 
+        
+        const mensaje = new SpeechSynthesisUtterance(fraseTitulo);
+        
+        // Buscar configuraciones de voces latinas alegres
+        const voces = window.speechSynthesis.getVoices();
+        let vozIdeal = voces.find(v => v.lang.includes('es-CO') || v.lang.includes('es-MX') || v.lang.includes('es-US'));
+        if (vozIdeal) mensaje.voice = vozIdeal;
+
+        // Calibración exacta para tono de niño feliz de 12 años
+        mensaje.rate = 1.05;  // Velocidad normal-alegre, fluida y nada lenta
+        mensaje.pitch = 1.40; // Tono más agudo, jovial, tierno y libre de robotizaciones pesadas
+
+        window.speechSynthesis.speak(mensaje);
+    }
+
+    /* 🔥 ACTIVACIÓN COMBINADA AL INSTANTE */
+    function animarTarjeta() {
+        sonarSerpentina(); // Primero suena el efecto mágico de serpentina
+        setTimeout(hablarSoloTitulo, 50); // Inmediatamente después el niño dice el título alegre
+    }
+
+    function nextValue() {
+        idx = (idx + 1) % vals.length;
+        const card = document.getElementById('value-card');
+        
+        card.style.opacity = "0";
+        card.style.transform = "scale(0.95) translateY(10px)";
+        
+        setTimeout(() => {
+            updateCardData();
+            card.style.opacity = "1";
+            card.style.transform = "scale(1) translateY(0)";
+        }, 200);
+    }
+
+    // Asegurar la carga correcta de voces en navegadores móviles y de escritorio
+    if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = () => {};
+    }
+
+    window.addEventListener('DOMContentLoaded', updateCardData);
+</script>
+
+<style>
+    .fw-black { font-weight: 900 !important; }
+    #value-card { min-height: 480px; border-style: solid !important; }
+    .leading-sm { line-height: 1.4; }
+</style>
+{% endblock %}

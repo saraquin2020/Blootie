@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+<!-- Tipografía estándar del sistema -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+    /* 1. FONDO ESTANDARIZADO DEL SISTEMA */
+    body {
+        background-color: #F7F9FC;
+        background-image: radial-gradient(#E2E8F0 2px, transparent 2px);
+        background-size: 30px 30px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    /* 2. SIDEBAR MODERNO */
+    .sidebar { 
+        background: #FFFFFF; 
+        border-right: none;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.03);
+        padding: 30px 20px !important;
+        z-index: 10;
+    }
+    
+    .sidebar-label {
+        font-size: 0.8rem; font-weight: 900; text-transform: uppercase;
+        color: #9CA3AF; margin-top: 30px; margin-bottom: 10px; padding-left: 15px; letter-spacing: 1.5px;
+    }
+
+    .nav-pills .nav-link { 
+        color: #64748B; font-weight: 800 !important; font-size: 1.1rem;
+        padding: 12px 20px !important; border-radius: 20px !important; 
+        margin-bottom: 8px; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        display: flex; align-items: center; border: 2px solid transparent;
+    }
+
+    .nav-link i { font-size: 1.3rem; margin-right: 15px; transition: transform 0.2s; }
+    .nav-link:hover { background: #F8FAFC !important; color: #1CB0F6 !important; transform: translateX(5px); border-color: #E2E8F0; }
+    .nav-link:hover i { transform: scale(1.2); }
+
+    .nav-pills .nav-link.active { 
+        background: #E1F5FE !important; color: #1CB0F6 !important; 
+        border-color: #1CB0F6 !important; box-shadow: 0 4px 15px rgba(28, 176, 246, 0.2);
+    }
+
+    /* 3. BARRA DE BÚSQUEDA TIPO PÍLDORA 3D */
+    .search-bar { 
+        background: #FFFFFF; border-radius: 50px; 
+        border: 4px solid #E2E8F0; padding: 12px 25px; max-width: 450px; flex: 1;
+        transition: all 0.2s ease; box-shadow: inset 0 4px 6px rgba(0,0,0,0.02);
+    }
+    .search-bar:focus-within { border-color: #1CB0F6; box-shadow: 0 0 0 4px rgba(28, 176, 246, 0.2); }
+    .search-bar input { border: none; outline: none; width: 100%; margin-left: 10px; font-weight: 700; color: #4B5563; background: transparent; }
+    .search-bar input::placeholder { color: #9CA3AF; }
+
+    /* 4. TARJETAS DE ESTADÍSTICAS (BLOCK-PUSH UI 3D) */
+    .card-stat { 
+        border-radius: 32px; color: white; min-height: 160px; 
+        border: 2px solid transparent; border-bottom-width: 10px; border-bottom-style: solid;
+        transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+        display: flex; flex-direction: row !important; align-items: center; justify-content: space-between;
+        padding: 25px; position: relative; overflow: hidden; cursor: pointer;
+    }
+    
+    .card-stat::after {
+        content: ''; position: absolute; top: 8px; left: 15px; right: 15px; height: 15px;
+        background: rgba(255,255,255,0.3); border-radius: 20px; pointer-events: none;
+    }
+
+    .card-stat:hover { transform: translateY(-4px); border-bottom-width: 12px; }
+    .card-stat:active { transform: translateY(8px); border-bottom-width: 0px; margin-top: 10px; }
+    
+    .bg-pink { background: #FF4B4B; border-bottom-color: #EA2B2B; border-color: #FF7676; }
+    .bg-blue { background: #1CB0F6; border-bottom-color: #1899D6; border-color: #4DB3E6; }
+    .bg-yellow { background: #FFC800; border-bottom-color: #E5B400; border-color: #FFD633; }
+
+    .stat-content { display: flex; flex-direction: column; align-items: flex-start; z-index: 2; }
+    .stat-number { font-size: 3.5rem; font-weight: 900; line-height: 1; text-shadow: 0 4px 0 rgba(0,0,0,0.1); }
+    .stat-label { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-top: 5px; }
+    .stat-3d-asset { width: 75px; height: 75px; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); z-index: 2; }
+
+    /* 5. PANELES MODERNOS DE CONTENIDO */
+    .panel-card {
+        background: #FFFFFF; border-radius: 32px; border: 4px solid #FFFFFF;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.04); padding: 30px; 
+        height: 100%; display: flex; flex-direction: column;
+    }
+
+    .panel-title-wrapper {
+        display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
+    }
+    .panel-title { color: #374151; font-weight: 900; font-size: 1.5rem; margin: 0; display: flex; align-items: center; gap: 10px; }
+    .panel-icon-3d { width: 35px; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
+
+    /* CONTENEDOR ESTRICTO RESPONSIVO PARA CHART.JS */
+    .chart-container {
+        position: relative;
+        width: 100%;
+        height: 300px; /* Altura estricta para forzar responsividad vertical */
+        flex-grow: 1;
+    }
+
+    /* ESTADO VACÍO (ACTIVIDAD) ESTILO TARJETA FÍSICA */
+    .empty-state-card {
+        background: #F8FAFC; border: 4px dashed #E2E8F0; border-radius: 24px;
+        flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 30px 20px; text-align: center; min-height: 250px;
+    }
+
+    .empty-state-asset { width: 90px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15)); margin-bottom: 15px; }
+    
+    .btn-quick-action {
+        background: #E1F5FE; color: #1CB0F6; font-weight: 900; border-radius: 12px;
+        padding: 10px 20px; border: 2px solid #1CB0F6; text-decoration: none; margin-top: 15px;
+        transition: all 0.1s; display: inline-block;
+    }
+    .btn-quick-action:hover { background: #1CB0F6; color: white; transform: translateY(-2px); }
+
+    /* Ajustes móviles */
+    @media (max-width: 768px) {
+        .panel-card { padding: 20px; }
+        .chart-container { height: 250px; }
+        .header-title-text { font-size: 2rem !important; }
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        
+        <!-- SIDEBAR -->
+        <div class="col-md-3 col-lg-2 d-none d-md-block sidebar min-vh-100">
+            <div class="text-center mb-5 mt-2">
+                <img src="{% static 'img/logo_blootie.png' %}" alt="Logo" style="width: 100px; filter: drop-shadow(0 8px 8px rgba(0,0,0,0.1));" class="mb-3">
+                <h6 class="fw-bold text-dark mb-1 fs-5">{{ request.user.username }}</h6>
+                <span class="badge" style="background: #D7FFB8; color: #58CC02; border: 2px solid #58CC02; font-weight: 900; padding: 6px 12px; border-radius: 12px;">PROFESOR</span>
+            </div>
+            
+            <div class="nav flex-column nav-pills">
+                <p class="sidebar-label">Navegación</p>
+                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <i class="bi bi-grid-fill"></i> Vista General
+                </a>
+                <a href="{% url 'lista_alumnos' %}" class="nav-link {% if request.resolver_match.url_name == 'lista_alumnos' %}active{% endif %}">
+                    <i class="bi bi-people-fill"></i> Mis Alumnos
+                </a>
+
+                <p class="sidebar-label">Gestión</p>
+                <a href="{% url 'gestionar_actividades' %}" class="nav-link {% if request.resolver_match.url_name == 'gestionar_actividades' %}active{% endif %}">
+                    <i class="bi bi-controller"></i> Actividades
+                </a>
+                <a href="{% url 'configuracion' %}" class="nav-link {% if request.resolver_match.url_name == 'configuracion' %}active{% endif %}">
+                    <i class="bi bi-gear-fill"></i> Configuración
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="col-12 col-md-9 ms-sm-auto col-lg-10 px-md-4 px-lg-5 py-5">
+            
+            <!-- HEADER -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-5 gap-4">
+                <div class="d-flex align-items-center">
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Red%20apple/3D/red_apple_3d.png" style="width: 50px; margin-right: 15px; filter: drop-shadow(0 6px 6px rgba(0,0,0,0.15));" alt="Apple">
+                    <h2 class="fw-bold text-dark mb-0 header-title-text" style="font-weight: 900; font-size: 2.5rem; letter-spacing: -1px;">Panel del Profesor</h2>
+                </div>
+                <div class="search-bar d-flex align-items-center">
+                    <i class="bi bi-search" style="color: #1CB0F6; font-size: 1.2rem; font-weight: 900;"></i>
+                    <input type="text" placeholder="Buscar reportes o alumnos...">
+                </div>
+            </div>
+
+            <!-- TARJETAS SUPERIORES -->
+            <div class="row g-4 mb-5">
+                <div class="col-12 col-md-4">
+                    <div class="card card-stat bg-pink shadow-sm">
+                        <div class="stat-content">
+                            <div class="stat-number">{{ estudiantes|default:"1" }}</div>
+                            <div class="stat-label">Estudiantes</div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Backpack/3D/backpack_3d.png" class="stat-3d-asset" alt="Mochila">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card card-stat bg-blue shadow-sm">
+                        <div class="stat-content">
+                            <div class="stat-number">{{ progreso|default:"10" }}</div>
+                            <div class="stat-label">Progresos</div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Chart%20increasing/3D/chart_increasing_3d.png" class="stat-3d-asset" alt="Gráfico">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card card-stat bg-yellow shadow-sm">
+                        <div class="stat-content">
+                            <div class="stat-number">{{ logros|default:"5" }}</div>
+                            <div class="stat-label">Logros</div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Trophy/3D/trophy_3d.png" class="stat-3d-asset" alt="Trofeo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZONA DE GRÁFICOS Y ACTIVIDAD -->
+            <div class="row g-4">
+                
+                <!-- Columna Gráfico -->
+                <div class="col-12 col-lg-7">
+                    <div class="panel-card">
+                        <div class="panel-title-wrapper">
+                            <h5 class="panel-title">
+                                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Bar%20chart/3D/bar_chart_3d.png" class="panel-icon-3d" alt="Chart"> 
+                                Progreso Semanal
+                            </h5>
+                        </div>
+                        <!-- Contenedor estricto para evitar colapso de Chart.js -->
+                        <div class="chart-container">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Actividad Reciente -->
+                <div class="col-12 col-lg-5">
+                    <div class="panel-card">
+                        <div class="panel-title-wrapper">
+                            <h5 class="panel-title">
+                                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Bell/3D/bell_3d.png" class="panel-icon-3d" alt="Bell"> 
+                                Actividad Reciente
+                            </h5>
+                        </div>
+                        
+                        <div class="empty-state-card">
+                            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sleeping%20face/3D/sleeping_face_3d.png" class="empty-state-asset" alt="Durmiendo">
+                            <h4 style="color: #64748B; font-weight: 900; font-size: 1.3rem; margin-bottom: 5px;">Todo está tranquilo</h4>
+                            <p style="color: #9CA3AF; font-weight: 700; margin-bottom: 0; font-size: 0.95rem;">No hay actividad nueva registrada por hoy.</p>
+                            
+                            <a href="{% url 'gestionar_actividades' %}" class="btn-quick-action">
+                                + Añadir Tarea
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Configuración de la fuente para integrarse al diseño
+        Chart.defaults.font.family = "'Nunito', sans-serif";
+        Chart.defaults.color = '#9CA3AF';
+
+        const canvas = document.getElementById('progressChart');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, '#1CB0F6'); 
+            gradient.addColorStop(1, '#4DB3E6'); 
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ labels_grafico|safe|default:"['Lun', 'Mar', 'Mie', 'Jue', 'Vie']" }},
+                    datasets: [{
+                        label: 'Puntaje',
+                        data: {{ data_grafico|safe|default:"[15, 22, 10, 28, 18]" }},
+                        backgroundColor: gradient,
+                        hoverBackgroundColor: '#1899D6',
+                        borderRadius: 16, 
+                        borderSkipped: false,
+                        barThickness: 'flex', 
+                        maxBarThickness: 45   
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Permite que el gráfico obedezca al .chart-container
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#374151',
+                            titleFont: { size: 14, family: "'Nunito', sans-serif", weight: 'bold' },
+                            bodyFont: { size: 14, family: "'Nunito', sans-serif", weight: 'bold' },
+                            padding: 12, cornerRadius: 16, displayColors: false
+                        }
+                    },
+                    scales: { 
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: '#F1F5F9', drawBorder: false }, 
+                            ticks: { font: { size: 12, weight: 'bold' }, stepSize: 10 }
+                        }, 
+                        x: { 
+                            grid: { display: false, drawBorder: false }, 
+                            ticks: { font: { size: 13, weight: 'bold' }, color: '#64748B' }
+                        } 
+                    },
+                    animation: {
+                        y: { duration: 1200, easing: 'easeOutBounce' } 
+                    }
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

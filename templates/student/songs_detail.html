@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .main-video-area { 
+        background: #4db3e6 !important; 
+        min-height: 100vh; 
+        padding: 40px 20px 100px 20px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .video-wrapper { 
+        max-width: 960px; 
+        width: 100%;
+        margin: 0 auto 30px auto; 
+        background: white; 
+        padding: 12px; 
+        border-radius: 40px; 
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3); 
+    }
+
+    .rounded-video { border-radius: 30px; overflow: hidden; }
+
+    /* Contenedor de botones para que siempre floten arriba */
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .btn-blootie { 
+        border-radius: 50px; 
+        font-weight: 900; 
+        padding: 18px 45px; 
+        transition: 0.3s; 
+        text-decoration: none; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-back-songs { 
+        background: #ffb1c1; 
+        color: #a33b50; 
+        border-bottom: 6px solid #e09ead; 
+    }
+
+    .btn-main-menu { 
+        background: #98ebad; 
+        color: #2d5a3a; 
+        border-bottom: 6px solid #78c58d; 
+    }
+
+    .btn-blootie:hover { 
+        transform: scale(1.1) translateY(-5px); 
+        color: inherit;
+        box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    }
+</style>
+
+<div class="main-video-area text-center">
+    <h1 class="text-white fw-bold mb-4 display-5">{{ cancion.title }}</h1>
+    
+    <div class="video-wrapper">
+        <div class="ratio ratio-16x9 rounded-video">
+            <iframe 
+                src="{{ cancion.url }}?rel=0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <!-- Botón 1: Lista de canciones -->
+        <a href="{% url 'songs_list' %}" class="btn-blootie btn-back-songs fs-4">
+            OTRAS CANCIONES
+        </a>
+        
+        <!-- Botón 2: Menú principal (CUIDADO: Verifica que el nombre sea 'home') -->
+        <a href="{% url 'home' %}" class="btn-blootie btn-main-menu fs-4">
+            MENÚ PRINCIPAL
+        </a>
+    </div>
+</div>
+{% endblock %}

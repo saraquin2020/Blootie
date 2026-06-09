@@ -1,0 +1,199 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Blootie{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{% static 'img/logo_blootie.png' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* --- EL UNIVERSO DE BLOOTIE (SIN CÍRCULO BLANCO) --- */
+    #blootie-world {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      z-index: 10000;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .blootie-sprite {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      width: 115px; 
+      height: 115px;
+      transition: left 4s linear, transform 0.3s ease;
+      pointer-events: auto;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CONTENEDOR TRANSPARENTE: Se eliminó el fondo blanco, el borde y la sombra */
+    .mico-container {
+      width: 110px;
+      height: 110px;
+      background: transparent; /* Ahora es transparente */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible; 
+    }
+
+    .mico-avatar {
+      width: 100%; /* Ajustado al 100% para que se vea completo y nítido */
+      height: 100%;
+      object-fit: contain;
+      /* Opcional: una sombra proyectada solo en el dibujo del mono */
+      filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.2));
+    }
+
+    /* BURBUJA DE TEXTO */
+    .chat-bubble {
+      position: absolute;
+      top: -75px;
+      background: #00d2ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 16px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      z-index: 10001;
+    }
+
+    .chat-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid #00d2ff;
+    }
+
+    .chat-bubble.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Animación de caminata */
+    @keyframes walking-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .walking-animation {
+      animation: walking-bounce 0.6s ease-in-out infinite;
+    }
+
+    .look-left { transform: scaleX(-1); }
+    .look-right { transform: scaleX(1); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{% url 'home' %}" style="color: #007bff;">
+      <img src="{% static 'img/logo_blootie.png' %}" alt="Logo Blootie" style="max-height: 70px; width: auto;">
+      <span class="fs-3" style="letter-spacing: -1px;">Blootie</span>
+    </a>
+    <div class="ms-auto d-flex align-items-center gap-2 flex-wrap">
+      {% if request.user.is_authenticated %}
+      <span class="badge rounded-pill text-bg-light border px-3 py-2">{{ request.user.username }}</span>
+      <a class="btn btn-sm btn-outline-danger rounded-pill" href="{% url 'logout' %}">Salir</a>
+      {% else %}
+      <a class="btn btn-sm btn-primary rounded-pill px-4" href="{% url 'login' %}">Entrar</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-3">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-pill shadow-sm px-4" role="alert" style="font-weight: 700;">
+                {% if message.tags == 'success' %}✨{% else %}⚠️{% endif %} {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% block content %}{% endblock %}
+
+<div id="blootie-world">
+    <div id="blootie-character" class="blootie-sprite" onclick="interactWithMico()">
+        <div id="mico-speech" class="chat-bubble">¡Hola!</div>
+        <div class="mico-container walking-animation">
+            <img src="{% static 'img/logo_blootie.png' %}" class="mico-avatar" alt="Blootie">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const mico = document.getElementById('blootie-character');
+    const bubble = document.getElementById('mico-speech');
+    const frases = ["¡A jugar!", "¡Qué divertido!", "¡Sigue así!", "¡Increíble!", "¡Vamos!", "✨ Genial ✨"];
+
+    function moveMico() {
+        const windowWidth = window.innerWidth;
+        const minX = 60;
+        const maxX = windowWidth - 180; 
+        
+        const randomX = Math.floor(Math.random() * (maxX - minX)) + minX;
+        const currentX = mico.offsetLeft;
+        
+        if (randomX > currentX) {
+            mico.classList.remove('look-left');
+            mico.classList.add('look-right');
+        } else {
+            mico.classList.remove('look-right');
+            mico.classList.add('look-left');
+        }
+
+        mico.style.left = randomX + 'px';
+        setTimeout(moveMico, Math.random() * 3000 + 4500);
+    }
+
+    function interactWithMico() {
+        bubble.innerText = frases[Math.floor(Math.random() * frases.length)];
+        bubble.classList.add('show');
+        
+        mico.style.transition = "transform 0.2s ease, left 4s linear";
+        mico.style.transform += " scale(1.15) translateY(-20px)";
+        
+        setTimeout(() => {
+            bubble.classList.remove('show');
+            const isLeft = mico.classList.contains('look-left');
+            // Mantenemos la dirección horizontal original al resetear el salto
+            mico.style.transform = isLeft ? "scaleX(-1)" : "scaleX(1)";
+        }, 2500);
+    }
+
+    window.onload = () => {
+        setTimeout(moveMico, 1200);
+    };
+</script>
+
+</body>
+</html>

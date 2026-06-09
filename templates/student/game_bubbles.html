@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main-game-wrapper" style="height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; box-sizing: border-box; overflow: hidden;">
+
+    <style>
+        /* --- REDISEÑO SUPERIOR (CERO TÉTRICO) --- */
+        .header-juego {
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            border-radius: 0 0 50px 50px; 
+            padding: 20px 30px; /* Reducido levemente para empujar los botones hacia arriba */
+            box-shadow: 0 10px 30px rgba(58, 123, 213, 0.3);
+            margin-bottom: 10px;
+            border-bottom: 8px solid rgba(255,255,255,0.2);
+        }
+
+        .instruccion-pro {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+        }
+
+        .vocal-objetivo-container {
+            background: white;
+            display: inline-block;
+            padding: 5px 40px;
+            border-radius: 30px;
+            box-shadow: 0 8px 0px #e0e0e0;
+            transform: rotate(-2deg);
+        }
+
+        #target-vocal {
+            font-size: 80px !important; /* Ajustado dinámicamente para que la burbuja superior no desplace los botones */
+            line-height: 1;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* --- OCULTAR EL MONO DE BASE.HTML SOLO AQUÍ --- */
+        #blootie-world {
+            display: none !important;
+        }
+
+        /* --- CONTENEDOR DE JUEGO --- */
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 340px); /* Ajuste dinámico estricto para que nunca desborde la pantalla */
+            min-height: 380px;
+            background: #ffffff;
+            overflow: hidden;
+            border-radius: 40px;
+            border: 4px dashed #ced4da;
+            margin-bottom: 15px;
+        }
+
+        /* Burbujas Estilo Cristal */
+        .bubble-pro {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 900;
+            color: white;
+            cursor: pointer;
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
+            transition: transform 0.1s ease;
+        }
+
+        /* Blootie Pro (El único protagonista) */
+        #blootie-feedback {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            width: 150px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        #blootie-feedback img {
+            width: 100%;
+            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2));
+        }
+
+        #blootie-msg {
+            position: absolute;
+            bottom: 170px;
+            right: 40px;
+            background: #ff4081;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 101;
+            box-shadow: 0 10px 20px rgba(255, 64, 129, 0.3);
+        }
+
+        #blootie-msg.show { opacity: 1; transform: translateY(0); }
+
+        .jump { animation: jumpAnim 0.6s ease; }
+        @keyframes jumpAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-40px) scale(1.1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+    </style>
+
+    <div class="header-juego text-center">
+        <p class="instruccion-pro">🌟 ¡Toca la vocal! 🌟</p>
+        <div class="vocal-objetivo-container">
+            <h1 id="target-vocal" class="fw-bold text-primary">A</h1>
+        </div>
+    </div>
+
+    <div class="container flex-grow-1 d-flex flex-column justify-content-between">
+        <div id="game-container">
+            <div id="blootie-msg">¡Genial!</div>
+            <div id="blootie-feedback">
+                <img src="{% static 'img/logo_blootie.png' %}" alt="Blootie">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center gap-3" style="margin-bottom: 10px;">
+            <a href="{% url 'student_module' 'vocales' %}" class="btn btn-lg btn-outline-primary rounded-pill px-5 shadow-sm">
+                <i class="bi bi-arrow-left-circle-fill"></i> Volver
+            </a>
+            <a href="{% url 'student_dashboard' %}" class="btn btn-lg btn-primary rounded-pill px-5 shadow-sm">
+                <i class="bi bi-house-heart-fill"></i> Inicio
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+    const container = document.getElementById('game-container');
+    const targetDisplay = document.getElementById('target-vocal');
+    const blootie = document.getElementById('blootie-feedback');
+    const blootieMsg = document.getElementById('blootie-msg');
+    
+    const vocales = ['A', 'E', 'I', 'O', 'U'];
+    const colores = {
+        'A': '#FF5733', 'E': '#33FF57', 'I': '#3357FF', 'O': '#F333FF', 'U': '#FFBD33'
+    };
+    const mensajes = ["¡Increíble!", "¡Muy bien!", "¡Eres Genial!", "¡Bravo!", "¡Sigue así!"];
+    
+    let currentTarget = vocales[Math.floor(Math.random() * vocales.length)];
+    let audioCtx = null;
+
+    function iniciarAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    }
+    
+    function updateTarget() {
+        targetDisplay.innerText = currentTarget;
+        targetDisplay.style.color = colores[currentTarget];
+    }
+
+    /* 🔊 EFECTO 1: ESTALLIDO ACERTADO (Fuerte y elástico) */
+    function sonarPopBurbuja() {
+        iniciarAudio();
+        if (!audioCtx) return;
+
+        const ahora = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(200, ahora);
+        osc.frequency.exponentialRampToValueAtTime(800, ahora + 0.05);
+        osc.frequency.exponentialRampToValueAtTime(20, ahora + 0.12);
+
+        gain.gain.setValueAtTime(0.8, ahora); 
+        gain.gain.exponentialRampToValueAtTime(0.001, ahora + 0.12);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(ahora);
+        osc.stop(ahora + 0.12);
+    }
+
+    /* 🎵 EFECTO 2: SERPENTINA MÁGICA DE CELEBRACIÓN */
+    function sonarSerpentinaBlootie() {
+        iniciarAudio();
+        if (!audioCtx) return;
+
+        const ahora = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'triangle'; 
+        osc.frequency.setValueAtTime(400, ahora);
+        osc.frequency.exponentialRampToValueAtTime(1500, ahora + 0.5);
+
+        gain.gain.setValueAtTime(0.6, ahora); 
+        gain.gain.exponentialRampToValueAtTime(0.001, ahora + 0.5);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(ahora);
+        osc.stop(ahora + 0.5);
+    }
+
+    /* ⚠️ EFECTO 3: SONIDO DE ERROR (Bup grave de advertencia suave) */
+    function sonarErrorIncorrecto() {
+        iniciarAudio();
+        if (!audioCtx) return;
+
+        const ahora = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sawtooth'; 
+        osc.frequency.setValueAtTime(130, ahora);
+        osc.frequency.linearRampToValueAtTime(80, ahora + 0.15);
+
+        gain.gain.setValueAtTime(0.5, ahora);
+        gain.gain.exponentialRampToValueAtTime(0.001, ahora + 0.15);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(ahora);
+        osc.stop(ahora + 0.15);
+    }
+
+    function triggerFeedback() {
+        sonarSerpentinaBlootie();
+
+        blootie.classList.add('jump');
+        blootieMsg.innerText = mensajes[Math.floor(Math.random() * mensajes.length)];
+        blootieMsg.classList.add('show');
+        
+        confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.8, x: 0.85 },
+            colors: [colores[currentTarget], '#ffffff', '#FFD700']
+        });
+
+        setTimeout(() => {
+            blootie.classList.remove('jump');
+            blootieMsg.classList.remove('show');
+        }, 1200);
+    }
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        const v = vocales[Math.floor(Math.random() * vocales.length)];
+        
+        // Ajuste dinámico de la altura inicial de la burbuja basado en la altura real del contenedor
+        const startTop = container.offsetHeight + 10;
+        
+        bubble.className = 'bubble-pro';
+        bubble.style.backgroundColor = colores[v];
+        bubble.style.left = Math.random() * (container.offsetWidth - 100) + 'px';
+        bubble.style.top = startTop + 'px';
+        bubble.innerText = v;
+        
+        bubble.onclick = () => {
+            iniciarAudio(); 
+            if (v === currentTarget) {
+                sonarPopBurbuja(); 
+                bubble.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    bubble.remove();
+                    currentTarget = vocales[Math.floor(Math.random() * vocales.length)];
+                    updateTarget();
+                    triggerFeedback();
+                }, 100);
+            } else {
+                sonarErrorIncorrecto(); 
+                bubble.style.animation = "shake 0.3s ease";
+                setTimeout(() => bubble.style.animation = "", 300);
+            }
+        };
+
+        container.appendChild(bubble);
+        
+        let pos = startTop;
+        const speed = Math.random() * 2 + 1;
+        const interval = setInterval(() => {
+            pos -= speed;
+            bubble.style.top = pos + 'px';
+            bubble.style.marginLeft = Math.sin(pos / 40) * 15 + 'px'; 
+
+            if (pos < -110) { 
+                clearInterval(interval); 
+                bubble.remove(); 
+            }
+        }, 20); 
+    }
+
+    updateTarget();
+    setInterval(createBubble, 1100);
+</script>
+{% endblock %}

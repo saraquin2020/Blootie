@@ -1,0 +1,380 @@
+/* 1. Registramos la fuente (Asegúrate de que el archivo esté en static/fonts/) */
+@font-face {
+    font-family: 'KidsMagic';
+    src: url('../fonts/KidsMagic.otf') format('opentype'); /* O .ttf si ese es el formato */
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, a, span, button {
+    font-family: 'Fredoka', sans-serif !important;
+}
+
+/* El efecto de contorno azul oscuro para el letrero del mono */
+.texto-contorneado {
+    color: white !important;
+    font-weight: 700; /* La hace más gruesa para que se parezca a Kids Magic */
+    text-shadow: 
+        -3px -3px 0 #1b31c2,  
+         3px -3px 0 #1b31c2,
+        -3px  3px 0 #1b31c2,
+         3px  3px 0 #1b31c2,
+         5px  5px 0px rgba(0,0,0,0.1);
+}
+body {
+    background: radial-gradient(circle at top left, rgba(255, 152, 203, .28), transparent 18%),
+                radial-gradient(circle at top right, rgba(111, 197, 255, .25), transparent 22%),
+                linear-gradient(180deg, #fffdf7 0%, #f7fbff 55%, #fff8fd 100%);
+    min-height: 100vh;
+    color: #2c3850;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-pink {
+    color: #ff4f9a !important;
+}
+
+.btn-pink {
+    background: #ff4f9a;
+    color: #fff;
+    border: none;
+}
+
+.btn-pink:hover {
+    background: #eb3d89;
+    color: #fff;
+}
+
+.hero-section {
+    padding: 2rem 0 1rem;
+}
+
+.hero-panel,
+.auth-panel,
+.panel-card,
+.showcase-card,
+.lesson-shell,
+.module-tile,
+.stat-box {
+    background: rgba(255, 255, 255, .92);
+    border: 1px solid rgba(30, 41, 59, .05);
+    box-shadow: 0 18px 45px rgba(37, 54, 88, .10);
+    border-radius: 28px;
+}
+
+.hero-panel {
+    padding: 2.5rem;
+}
+
+.hero-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: .65rem 1rem;
+    border-radius: 999px;
+    background: #fff0f7;
+    color: #d6357f;
+    font-weight: 700;
+}
+
+.emoji-row span {
+    font-size: 2rem;
+    margin-right: .8rem;
+}
+
+.showcase-card {
+    min-height: 320px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.big-emoji {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.module-tile {
+    padding: 1.4rem;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.module-tile:hover,
+.menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(37, 54, 88, .13);
+}
+
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .06);
+    margin-bottom: 1rem;
+}
+
+.pink-soft {
+    background: linear-gradient(135deg, #fff0f7, #fff8fb);
+}
+
+.blue-soft {
+    background: linear-gradient(135deg, #eef8ff, #f8fcff);
+}
+
+.yellow-soft {
+    background: linear-gradient(135deg, #fff9de, #fffdf4);
+}
+
+.green-soft {
+    background: linear-gradient(135deg, #effff3, #f8fffb);
+}
+
+.purple-soft {
+    background: linear-gradient(135deg, #f5f0ff, #fbf9ff);
+}
+
+.orange-soft {
+    background: linear-gradient(135deg, #fff2e8, #fffaf6);
+}
+
+.teal-soft {
+    background: linear-gradient(135deg, #ebffff, #f7ffff);
+}
+
+.red-soft {
+    background: linear-gradient(135deg, #fff0f0, #fff8f8);
+}
+
+.auth-panel {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.login-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, #ff8ec0, #87d1ff);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .10);
+}
+
+.login-page-wrapper {
+    background-color: #4db3e6 !important; /* El azul de tu Home */
+    min-height: 100vh; /* Para que ocupe todo el alto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Ajuste opcional por si el menú de navegación (navbar) te estorba */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.demo-panel {
+    background: #f7fbff;
+    border: 2px dashed #d4ebff;
+    border-radius: 22px;
+    padding: 1rem;
+}
+
+.stat-box {
+    padding: 1.5rem;
+    text-align: center;
+    height: 100%;
+}
+
+.stat-emoji {
+    font-size: 2.2rem;
+    margin-bottom: .5rem;
+}
+
+.stat-box h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: .25rem;
+}
+
+.stat-box p {
+    margin: 0;
+    color: #63748b;
+}
+
+.stat-pink {
+    background: linear-gradient(135deg, #fff0f7, #fff);
+}
+
+.stat-blue {
+    background: linear-gradient(135deg, #eef8ff, #fff);
+}
+
+.stat-green {
+    background: linear-gradient(135deg, #eefdf4, #fff);
+}
+
+.stat-yellow {
+    background: linear-gradient(135deg, #fffbe7, #fff);
+}
+
+.student-hero {
+    background: linear-gradient(135deg, #ffffff, #fff2fa);
+    border: 1px solid rgba(255, 79, 154, .08);
+    box-shadow: 0 18px 45px rgba(37, 54, 88, .08);
+    border-radius: 28px;
+    padding: 1.4rem 1.6rem;
+}
+
+.lesson-shell {
+    padding: 2rem;
+}
+
+.gradient-pink {
+    background: linear-gradient(135deg, #fff0f7, #ffffff);
+}
+
+.gradient-blue {
+    background: linear-gradient(135deg, #eef8ff, #ffffff);
+}
+
+.gradient-yellow {
+    background: linear-gradient(135deg, #fff9de, #ffffff);
+}
+
+.gradient-green {
+    background: linear-gradient(135deg, #effff3, #ffffff);
+}
+
+.gradient-purple {
+    background: linear-gradient(135deg, #f5f0ff, #ffffff);
+}
+
+.gradient-orange {
+    background: linear-gradient(135deg, #fff2e8, #ffffff);
+}
+
+.gradient-teal {
+    background: linear-gradient(135deg, #ebffff, #ffffff);
+}
+
+.gradient-red {
+    background: linear-gradient(135deg, #fff0f0, #ffffff);
+}
+
+.lesson-emoji,
+.small-emoji {
+    width: 74px;
+    height: 74px;
+    border-radius: 24px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .08);
+}
+
+.small-emoji {
+    width: 56px;
+    height: 56px;
+    font-size: 1.4rem;
+    border-radius: 18px;
+}
+
+.mini-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 1.3rem;
+    text-align: center;
+    box-shadow: 0 14px 28px rgba(37, 54, 88, .08);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.mini-card small {
+    display: block;
+    font-size: .95rem;
+    margin-top: .55rem;
+    color: #64748b;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.memory-card {
+    min-height: 110px;
+    border: none;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 12px 26px rgba(37, 54, 88, .10);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.memory-card.open {
+    background: #eef8ff;
+}
+
+.memory-card.matched {
+    background: #eafdf0;
+}
+
+@media (max-width: 768px) {
+    .hero-panel {
+        padding: 1.4rem;
+    }
+    .showcase-card {
+        min-height: 220px;
+    }
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(
+        rgba(120, 180, 255, 0.7),
+        rgba(160, 120, 255, 0.7)
+    ),
+    url('/static/img/fondo_blootie.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.monito-bailarin img {
+    max-width: 180px; /* Tamaño ideal */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    /* Un pequeño bailecito extra por si la imagen es estática */
+    animation: saltito 1s infinite alternate;
+}
+
+@keyframes saltito {
+    from { transform: translateY(0); }
+    to { transform: translateY(-15px); }
+}

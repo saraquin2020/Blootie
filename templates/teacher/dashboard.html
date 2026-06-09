@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+    body { background-color: #F7F9FC; font-family: 'Nunito', sans-serif; }
+
+    /* SIDEBAR PRO */
+    .sidebar { background: white; border-right: none; box-shadow: 10px 0 30px rgba(0,0,0,0.03); padding: 30px 20px !important; z-index: 10; }
+    .sidebar-label { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; color: #9CA3AF; margin: 30px 0 10px 15px; letter-spacing: 1.5px; }
+    .nav-pills .nav-link { 
+        color: #64748B; font-weight: 800; font-size: 1.1rem; padding: 12px 20px !important; 
+        border-radius: 20px !important; margin-bottom: 8px; transition: all 0.2s; display: flex; align-items: center; 
+    }
+    .nav-link:hover { background: #F8FAFC !important; color: #1CB0F6 !important; transform: translateX(5px); }
+    .nav-pills .nav-link.active { background: #E1F5FE !important; color: #1CB0F6 !important; border: 2px solid #1CB0F6; }
+
+    /* TARJETAS 3D */
+    .card-stat { 
+        border-radius: 32px; color: white; min-height: 160px; border: none;
+        border-bottom: 10px solid rgba(0,0,0,0.1); transition: all 0.2s;
+        display: flex; flex-direction: row !important; align-items: center; justify-content: space-between;
+        padding: 30px; position: relative; overflow: hidden;
+    }
+    .card-stat:hover { transform: translateY(-5px); }
+    .bg-pink { background: #FF4B4B; }
+    .bg-blue { background: #1CB0F6; }
+    .bg-yellow { background: #FFC800; }
+    .stat-number { font-size: 3.5rem; font-weight: 900; line-height: 1; text-shadow: 0 4px 0 rgba(0,0,0,0.1); }
+    .stat-label { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; margin-top: 5px; opacity: 0.9; }
+    .stat-3d-asset { width: 75px; height: 75px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); }
+
+    /* PANELES Y GRÁFICO RESPONSIVO */
+    .panel-card { background: white; border-radius: 32px; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.04); height: 100%; }
+    .chart-wrapper { position: relative; height: 300px; width: 100%; }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-none d-md-block sidebar min-vh-100">
+            <div class="text-center mb-5">
+                <img src="{% static 'img/logo_blootie.png' %}" style="width: 90px;" class="mb-3">
+                <h6 class="fw-black">{{ request.user.username }}</h6>
+                <span class="badge" style="background: #D7FFB8; color: #58CC02;">PROFESOR</span>
+            </div>
+            <div class="nav flex-column nav-pills">
+                <p class="sidebar-label">Navegación</p>
+                <a href="{% url 'dashboard' %}" class="nav-link active"><i class="bi bi-grid-fill"></i> Vista General</a>
+                <a href="{% url 'lista_alumnos' %}" class="nav-link"><i class="bi bi-people-fill"></i> Mis Alumnos</a>
+                <p class="sidebar-label">Gestión</p>
+                <a href="{% url 'gestionar_actividades' %}" class="nav-link"><i class="bi bi-controller"></i> Actividades</a>
+            </div>
+        </div>
+
+        <!-- Contenido -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-5">
+            <h2 class="fw-black mb-5" style="font-size: 2.5rem;">Panel del Profesor 🍎</h2>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card card-stat bg-pink">
+                        <div class="stat-content"><div class="stat-number">{{ estudiantes|default:"1" }}</div><div class="stat-label">Estudiantes</div></div>
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Backpack/3D/backpack_3d.png" class="stat-3d-asset">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-stat bg-blue">
+                        <div class="stat-content"><div class="stat-number">{{ progreso|default:"10" }}</div><div class="stat-label">Progresos</div></div>
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Chart%20increasing/3D/chart_increasing_3d.png" class="stat-3d-asset">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-stat bg-yellow">
+                        <div class="stat-content"><div class="stat-number">{{ logros|default:"5" }}</div><div class="stat-label">Logros</div></div>
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Trophy/3D/trophy_3d.png" class="stat-3d-asset">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="panel-card">
+                        <h5 class="fw-black mb-4">📈 Progreso Semanal</h5>
+                        <div class="chart-wrapper">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="panel-card d-flex flex-column align-items-center justify-content-center text-center">
+                        <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sleeping%20face/3D/sleeping_face_3d.png" style="width: 100px;" class="mb-3">
+                        <h4 class="fw-black">Todo tranquilo</h4>
+                        <p class="text-muted">No hay actividad nueva hoy.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels_grafico|safe|default:"['Lun', 'Mar', 'Mie', 'Jue', 'Vie']" }},
+            datasets: [{
+                data: {{ data_grafico|safe|default:"[15, 22, 10, 28, 18]" }},
+                backgroundColor: '#1CB0F6',
+                borderRadius: 16,
+                barThickness: 30
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, grid: { display: false } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+</script>
+{% endblock %}

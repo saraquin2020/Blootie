@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Contenedor con fondo azul de Blootie -->
+<div class="login-page-wrapper">
+    
+    <div class="card p-5 border-0 shadow-lg rounded-5 text-center" style="max-width: 450px; width: 100%; background: white;">
+        
+        <div class="mb-4 text-center">
+            <img src="{% static 'img/logo_blootie.png' %}" alt="Logo Blootie" class="rounded-4 shadow-sm mb-3" style="width: 80px;">
+            <h2 class="fw-bold" style="color: #333;">Crear Cuenta</h2>
+            <p class="text-secondary">¡Únete a la diversión de Blootie!</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Bucle de campos de Django -->
+            {% for field in form %}
+            <div class="text-start mb-3">
+                <label class="form-label fw-bold">{{ field.label }}</label>
+                {{ field }}
+                
+                {% if field.help_text %}
+                    <div class="form-text small">{{ field.help_text }}</div>
+                {% endif %}
+                
+                {% for error in field.errors %}
+                    <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="d-grid mt-4 gap-2">
+                <!-- Botón Rosado -->
+                <button type="submit" class="btn btn-lg rounded-pill shadow-sm text-white" style="background-color: #ff4081; border: none; padding: 0.75rem;">
+                    ¡Listo, registrarme!
+                </button>
+                
+                <a href="{% url 'login' %}" class="btn btn-link text-decoration-none" style="color: #4db3e6; font-weight: bold;">
+                    ¿Ya tienes cuenta? Ingresa aquí
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Ocultamos textos de ayuda automáticos de Django */
+    .form-text, .helptext {
+        display: none;
+    }
+    
+    /* Estilizamos los inputs que vienen de Django */
+    input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #dee2e6;
+        border-radius: 50rem !important;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    input:focus {
+        border-color: #4db3e6;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(77, 179, 230, 0.25);
+    }
+</style>
+{% endblock %}

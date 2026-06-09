@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght=700;900&display=swap" rel="stylesheet">
+
+<style>
+    /* 1. FONDO Y TIPOGRAFÍA */
+    body {
+        background-color: #F7F9FC;
+        background-image: radial-gradient(#E2E8F0 2px, transparent 2px);
+        background-size: 30px 30px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    /* 2. TARJETAS DE ACTIVIDAD (BLOCK-PUSH UI) */
+    .activity-card {
+        background: white; border-radius: 32px; padding: 25px;
+        border: 2px solid #E5E7EB; border-bottom: 8px solid #E5E7EB;
+        transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+        display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .activity-card:hover { transform: translateY(-4px); border-bottom-width: 10px; background: #F9FAFB; }
+    
+    /* Estado activo del interruptor */
+    .activity-card.is-active { border-color: #58CC02; border-bottom-color: #46A302; background: #D7FFB8; }
+
+    /* 3. ICONOS 3D DINÁMICOS */
+    .icon-container {
+        font-size: 3rem; width: 80px; height: 80px;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.8); border-radius: 20px;
+        filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
+    }
+
+    /* Ajuste de Twemoji para que se vea 3D */
+    img.emoji { width: 3rem; height: 3rem; filter: saturate(1.2); }
+
+    /* 4. SWITCH PERSONALIZADO 3D */
+    .form-switch .form-check-input {
+        width: 60px; height: 30px; background-color: #E2E8F0;
+        border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .form-switch .form-check-input:checked { background-color: #58CC02; }
+
+    /* 5. BOTÓN VOLVER */
+    .btn-back {
+        background: #FFFFFF; color: #64748B; border: 2px solid #E2E8F0;
+        border-radius: 16px; padding: 12px 30px; font-weight: 900;
+        text-decoration: none; transition: all 0.1s;
+    }
+    .btn-back:hover { background: #F1F5F9; transform: translateY(-2px); }
+</style>
+
+<div class="container py-5">
+    <div class="mb-4">
+        <a href="{% url 'dashboard' %}" class="btn-back">
+            <i class="bi bi-arrow-left me-2"></i> Volver
+        </a>
+    </div>
+
+    <div class="mb-5">
+        <h2 class="fw-black text-dark" style="font-size: 2.8rem; letter-spacing: -1px;">Centro de Control 🕹️</h2>
+        <p class="fs-4 text-secondary fw-bold">Activa o desactiva los juegos para los estudiantes</p>
+    </div>
+
+    <input type="hidden" id="global-csrf" value="{{ csrf_token }}">
+
+    <div class="row g-4" id="render-target">
+        {% for actividad in actividades %}
+            {# Si el nombre contiene 'Burbuja', lo ignoramos por completo en el ciclo para que no se duplique la tarjeta #}
+            {% if "Burbuja" in actividad.nombre %}
+                {% else %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="activity-card {% if actividad.esta_activa %}is-active{% endif %}" id="card-{{ actividad.id }}">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-container emoji-to-3d">
+                                {% if "Vocal" in actividad.nombre %}🅰️
+                                {% elif "Número" in actividad.nombre or "Mate" in actividad.nombre %}🔢
+                                {% elif "Color" in actividad.nombre %}🎨
+                                {% elif "Animal" in actividad.nombre %}🐾
+                                {% elif "Familia" in actividad.nombre %}👨‍👩‍👧‍👦
+                                {% elif "Valor" in actividad.nombre %}❤️
+                                {% elif "Cuerpo" in actividad.nombre %}👤
+                                {% elif "Memoria" in actividad.nombre %}🧠
+                                {% elif "Canción" in actividad.nombre %}🎵
+                                {% elif "Cuento" in actividad.nombre %}📖
+                                {% elif "Mercadito" in actividad.nombre %}🧺
+                                {% elif "Unir" in actividad.nombre %}🧩
+                                {% elif "Plana" in actividad.nombre %}🖋️
+                                {% else %}📝{% endif %}
+                            </div>
+                            <div>
+                                {# Forzamos el nombre visual a Vocales siempre #}
+                                <h5 class="fw-black mb-0 fs-4 text-dark">
+                                    {% if "Vocal" in actividad.nombre %}Vocales{% else %}{{ actividad.nombre }}{% endif %}
+                                </h5>
+                                <span class="badge rounded-pill px-3 py-1 mt-1 id-badge-{{ actividad.id }}
+                                    {% if actividad.esta_activa %}bg-success text-white{% else %}bg-secondary text-white{% endif %}">
+                                    {% if actividad.esta_activa %}VISIBLE{% else %}OCULTO{% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-check form-switch">
+                            <input class="form-check-input activity-toggle" type="checkbox" role="switch" 
+                                   data-id="{{ actividad.id }}"
+                                   {% if actividad.esta_activa %}checked{% endif %} 
+                                   onchange="toggleActividad(this)">
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted fw-bold">No hay actividades configuradas.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // Motor de Twemoji
+    document.addEventListener("DOMContentLoaded", function() {
+        twemoji.parse(document.getElementById('render-target'), {
+            folder: 'svg',
+            ext: '.svg'
+        });
+    });
+
+    // FUNCIÓN CONTROLADORA AJAX DE ALTO RENDIMIENTO
+    function toggleActividad(checkbox) {
+        const actividadId = checkbox.getAttribute('data-id');
+        const estaActiva = checkbox.checked; 
+        
+        const card = document.getElementById(`card-${actividadId}`);
+        const badge = document.querySelector(`.id-badge-${actividadId}`);
+        const csrfToken = document.getElementById('global-csrf').value;
+        const url = "{% url 'gestionar_actividades' %}";
+
+        const formData = new FormData();
+        formData.append('actividad_id', actividadId);
+        formData.append('esta_activa', estaActiva); 
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                if (estaActiva) {
+                    card.classList.add('is-active');
+                    badge.innerText = "VISIBLE";
+                    badge.className = `badge rounded-pill px-3 py-1 mt-1 id-badge-${actividadId} bg-success text-white`;
+                } else {
+                    card.classList.remove('is-active');
+                    badge.innerText = "OCULTO";
+                    badge.className = `badge rounded-pill px-3 py-1 mt-1 id-badge-${actividadId} bg-secondary text-white`;
+                }
+            } else {
+                checkbox.checked = !estaActiva;
+                alert('Hubo un problema al guardar el estado en el servidor.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            checkbox.checked = !estaActiva;
+            alert('Error de conexión.');
+        });
+    }
+</script>
+{% endblock %}

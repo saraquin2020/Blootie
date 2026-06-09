@@ -1,0 +1,387 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght=700;900&display=swap" rel="stylesheet">
+
+<style>
+    /* FONDO ESTILO ESTUDIO DE CINE / TEATRO COMODO */
+    .game-cinema-bg {
+        background-color: #0b1021;
+        background-image: 
+            radial-gradient(#151c33 15%, transparent 16%),
+            radial-gradient(#151c33 15%, transparent 16%);
+        background-size: 30px 30px;
+        background-position: 0 0, 15px 15px;
+        min-height: 100vh;
+        padding-bottom: 80px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .cinema-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    /* LETRERO DE MISIÓN DIRECTORIAL */
+    .mission-box {
+        background: #e63946;
+        border: 6px solid #ffffff;
+        border-radius: 30px;
+        box-shadow: 10px 10px 0px #457b9d;
+        padding: 25px 20px;
+        margin: 40px auto;
+        max-width: 800px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mission-title {
+        color: white;
+        font-weight: 900;
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        text-shadow: 3px 3px 0px #111;
+        letter-spacing: 1px;
+        margin: 0;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #target-member {
+        color: #a8dadc;
+        text-transform: uppercase;
+        text-shadow: 3px 3px 0px #111;
+    }
+
+    /* TARJETAS DE VIDEO INTERACTIVAS */
+    .cinema-card {
+        background: #1d3557;
+        border-radius: 32px;
+        border: 5px solid #f1faee;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+        transition: all 0.2s ease-in-out;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        height: 100%;
+    }
+
+    .cinema-card:hover { 
+        transform: scale(1.03); 
+        border-color: #457b9d;
+        box-shadow: 0px 15px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Contenedor del video para mantener proporciones limpias */
+    .video-wrapper {
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #000;
+        aspect-ratio: 4/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .family-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Botón reproductor visual */
+    .play-hint-btn {
+        margin-top: 12px;
+        background: #457b9d;
+        color: white;
+        border: none;
+        padding: 6px 18px;
+        font-weight: 900;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: background 0.2s;
+    }
+    .cinema-card:hover .play-hint-btn {
+        background: #e63946;
+    }
+
+    /* BOTÓN REGRESAR */
+    .cinema-btn {
+        font-weight: 900;
+        text-transform: uppercase;
+        border: 4px solid #ffffff !important;
+        box-shadow: 6px 6px 0px #457b9d;
+        transition: all 0.1s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+    .cinema-btn:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0px #457b9d; }
+    .cinema-btn:hover { filter: brightness(1.1); color: white; }
+
+    /* MODAL DE CELEBRACIÓN */
+    .modal-cinema {
+        border-radius: 40px !important;
+        border: 6px solid #ffffff !important;
+        box-shadow: 15px 15px 0px rgba(0,0,0,0.6) !important;
+        overflow: hidden;
+    }
+    .modal-cinema-body { padding: 40px !important; display: flex; flex-direction: column; align-items: center; }
+
+    .modal-video-preview {
+        width: 90%;
+        max-width: 320px;
+        border-radius: 24px;
+        border: 4px solid white;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        background: #000;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    /* Feedback de error */
+    #family-feedback {
+        font-weight: 900; font-size: clamp(1.4rem, 4vw, 2.2rem);
+        text-shadow: 2px 2px 0 #000; letter-spacing: 1px; min-height: 60px;
+    }
+
+    .asset-3d-cinema { width: 50px; height: 50px; object-fit: contain; }
+</style>
+
+<div class="game-cinema-bg">
+    <div class="container text-center py-4">
+        
+        <div class="mission-box animate__animated animate__jackInTheBox">
+            <h2 class="mission-title">
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Clapper%20board/3D/clapper_board_3d.png" class="asset-3d-cinema" alt="Acción">
+                CINEFORO: ¿Dónde está <span id="target-member">...</span>?
+            </h2>
+            <p class="text-white fw-bold m-0 mt-3" style="font-size: 1.2rem; opacity: 0.95;">
+                ¡Pasa el cursor para escuchar el sonido y presiona el correcto!
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center cinema-container mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="cinema-card" onclick="checkFamily('Mamá', this)">
+                    <div class="video-wrapper">
+                        <video class="family-video" loop playsinline preload="auto">
+                            <source src="{% static 'img/mama.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+                    <button class="play-hint-btn">🔊 Escuchar</button>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="cinema-card" onclick="checkFamily('Papá', this)">
+                    <div class="video-wrapper">
+                        <video class="family-video" loop playsinline preload="auto">
+                            <source src="{% static 'img/papa.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+                    <button class="play-hint-btn">🔊 Escuchar</button>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="cinema-card" onclick="checkFamily('Hermana', this)">
+                    <div class="video-wrapper">
+                        <video class="family-video" loop playsinline preload="auto">
+                            <source src="{% static 'img/hermana.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+                    <button class="play-hint-btn">🔊 Escuchar</button>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="cinema-card" onclick="checkFamily('Hermano', this)">
+                    <div class="video-wrapper">
+                        <video class="family-video" loop playsinline preload="auto">
+                            <source src="{% static 'img/hermano.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+                    <button class="play-hint-btn">🔊 Escuchar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="family-feedback" class="text-warning animate__animated mb-5"></div>
+
+        <div class="mt-4">
+            <a href="{% url 'student_dashboard' %}" class="btn btn-danger btn-lg rounded-pill px-5 cinema-btn py-3 fs-4" style="background: #e63946; color: white;">
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Film%20projector/3D/film_projector_3d.png" style="width: 30px;"> 
+                REGRESAR AL MENÚ
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="complimentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-cinema" id="modal-content-bg">
+            <div class="modal-body modal-cinema-body text-center">
+                <video id="modal-video-preview" class="modal-video-preview" loop playsinline></video>
+                
+                <h1 class="fw-bold mb-3 text-white" id="modal-title" style="font-size: 2.6rem; text-shadow: 3px 3px 0 #111; letter-spacing: 2px;">¡LOGRADO!</h1>
+                <p class="fs-4 fw-bold text-white mb-4" id="modal-text" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.6);"></p>
+                
+                <button type="button" class="btn btn-light btn-lg rounded-pill px-5 cinema-btn text-dark py-3 fs-4 w-100 justify-content-center" data-bs-dismiss="modal" onclick="pickNextMember()">
+                    SIGUIENTE FUNCIÓN 
+                    <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Movie%20camera/3D/movie_camera_3d.png" style="width: 35px;">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+    let currentFamilyTarget = "";
+    const members = ['Mamá', 'Papá', 'Hermana', 'Hermano'];
+
+    const familyVideosPaths = {
+        'Mamá': "{% static 'img/mama.mp4' %}",
+        'Papá': "{% static 'img/papa.mp4' %}",
+        'Hermana': "{% static 'img/hermana.mp4' %}",
+        'Hermano': "{% static 'img/hermano.mp4' %}"
+    };
+
+    const cosasLindas = {
+        'Mamá': [
+            "¡Nuestra estrella favorita! Mamá siempre guía al equipo con el corazón. 🎬❤️",
+            "¡Excelente elección! El apoyo de mamá es la mejor parte de toda la película. ✨"
+        ],
+        'Papá': [
+            "¡El gran director de aventuras! Papá siempre está listo para protegernos. 🎥💪",
+            "¡Corte y queda! Papá tiene toda la energía para vencer cualquier reto diario. 🔥"
+        ],
+        'Hermana': [
+            "¡Una coestrella brillante! Tu hermana llena de alegría e inteligencia cada escena. 🔮⭐",
+            "¡La compañera perfecta detrás de cámaras para compartir los mejores momentos! 🤝"
+        ],
+        'Hermano': [
+            "¡Acción pura y divertida! Tu hermano se mueve a mil por hora para hacernos reír. ⚡Astronomía",
+            "¡El actor ideal para las escenas de comedia y travesuras divertidas! 👦"
+        ]
+    };
+
+    // CONTROL INTELIGENTE DE AUDIO CON INTERACCIÓN HUMANA
+    function setupVideoAudioEvents() {
+        const cards = document.querySelectorAll('.cinema-card');
+        cards.forEach(card => {
+            const video = card.querySelector('video');
+            
+            // Cuando pasan el mouse por encima: Quita silencio, reinicia y reproduce con audio
+            card.addEventListener('mouseenter', () => { 
+                if(video) {
+                    video.muted = false; 
+                    video.currentTime = 0;
+                    video.play().catch(e => console.log("Audio esperando click inicial"));
+                } 
+            });
+
+            // Cuando sacan el mouse: Silencia y pausa para no mezclar audios
+            card.addEventListener('mouseleave', () => { 
+                if(video) {
+                    video.muted = true;
+                    video.pause(); 
+                }
+            });
+            
+            // Soporte táctil para móviles
+            card.addEventListener('touchstart', (e) => {
+                // Silenciar todos primero
+                document.querySelectorAll('video').forEach(v => { v.muted = true; v.pause(); });
+                if(video) {
+                    video.muted = false;
+                    video.currentTime = 0;
+                    video.play();
+                }
+            });
+        });
+    }
+
+    function pickNextMember() {
+        const previousTarget = currentFamilyTarget;
+        do {
+            currentFamilyTarget = members[Math.floor(Math.random() * members.length)];
+        } while (currentFamilyTarget === previousTarget);
+
+        document.getElementById('target-member').innerText = currentFamilyTarget.toUpperCase();
+        document.getElementById('family-feedback').innerText = "";
+
+        const modalVid = document.getElementById('modal-video-preview');
+        modalVid.pause();
+        modalVid.src = "";
+    }
+
+    function checkFamily(name, element) {
+        const feedback = document.getElementById('family-feedback');
+        feedback.innerText = "";
+
+        if (name === currentFamilyTarget) {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+            const piropos = cosasLindas[name];
+            document.getElementById('modal-text').innerText = piropos[Math.floor(Math.random() * piropos.length)];
+            document.getElementById('modal-title').innerText = "¡SÍ! ES " + name.toUpperCase();
+            
+            // Activar video del modal con sonido completo
+            const modalVid = document.getElementById('modal-video-preview');
+            modalVid.muted = false; 
+            modalVid.src = familyVideosPaths[name];
+            modalVid.load();
+            modalVid.play().catch(e => {
+                // Si el navegador bloquea el audio, lo reproduce en mute como plan B
+                modalVid.muted = true;
+                modalVid.play();
+            });
+            
+            const modalBg = document.getElementById('modal-content-bg');
+            if(name === 'Mamá') modalBg.style.backgroundColor = "#e63946";
+            else if(name === 'Papá') modalBg.style.backgroundColor = "#457b9d";
+            else if(name === 'Hermana') modalBg.style.backgroundColor = "#6a49a8";
+            else modalBg.style.backgroundColor = "#1d3557";
+
+            const myModal = new bootstrap.Modal(document.getElementById('complimentModal'));
+            myModal.show();
+
+        } else {
+            feedback.innerText = "🎬 ¡PRODUCCIÓN! ESE NO ERA " + currentFamilyTarget.toUpperCase() + " ❌";
+            element.classList.add('animate__animated', 'animate__wobble');
+            setTimeout(() => { element.classList.remove('animate__animated', 'animate__wobble'); }, 600);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        pickNextMember();
+        setupVideoAudioEvents();
+        
+        // Carga inicial silenciosa de seguridad para evitar pantallas negras
+        document.querySelectorAll('.family-video').forEach(video => {
+            video.muted = true;
+            video.load();
+            video.play().catch(() => {});
+        });
+    });
+</script>
+{% endblock %}

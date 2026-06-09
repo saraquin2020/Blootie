@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+    /* 1. ESTILOS GLOBALES */
+    body { 
+        background-color: #F7F9FC; 
+        font-family: 'Nunito', sans-serif; 
+    }
+
+    /* 2. HERO SECTION (El Mundo Azul Blootie Texturizado) */
+    .hero-section {
+        background-color: #4db3e6;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.2) 2px, transparent 2px);
+        background-size: 30px 30px;
+        color: white;
+        padding: 80px 0 120px 0;
+        border-radius: 0 0 50% 50% / 0 0 15% 15%;
+        border-bottom: 15px solid #2B8DBE; 
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-chip {
+        background: #ffffff;
+        color: #4db3e6;
+        padding: 10px 24px;
+        border-radius: 50px;
+        font-weight: 900;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        border: none;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+    }
+    .hero-chip i { color: #FFC800; }
+
+    /* Botones Gamificados en la Cabecera */
+    .btn-b-yellow {
+        background: #FFC800; color: #B25A00; border: none; border-bottom: 6px solid #D9AA00;
+        border-radius: 30px; padding: 15px 35px; font-weight: 900; font-size: 1.3rem;
+        text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+        transition: all 0.1s; box-shadow: 0 10px 20px rgba(0,0,0,0.15); cursor: pointer;
+    }
+    .btn-b-yellow:active { transform: translateY(6px); border-bottom-width: 0; margin-top: 6px; }
+    .btn-b-yellow:hover { color: #8A4600; filter: brightness(1.05); }
+
+    .btn-b-outline-white {
+        background: rgba(255,255,255,0.1); color: white; border: 3px solid white;
+        border-radius: 30px; padding: 15px 35px; font-weight: 900; font-size: 1.3rem;
+        text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer;
+    }
+    .btn-b-outline-white:hover { background: white; color: #4db3e6; }
+    .btn-b-outline-white:active { transform: translateY(4px); }
+
+    /* 3. SECCIÓN MISIÓN MÁGICA (Block-Push) */
+    .mission-card {
+        border-radius: 35px;
+        padding: 40px 25px;
+        text-align: center;
+        border: 4px solid #ffffff;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .mission-card:hover { transform: translateY(-8px); border-bottom-width: 12px; }
+    
+    .asset-3d-big {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15));
+        transition: transform 0.3s;
+    }
+    .mission-card:hover .asset-3d-big { transform: scale(1.15) rotate(5deg); }
+
+    .mission-card h3 { font-weight: 900; color: #374151; font-size: 1.8rem; margin-bottom: 15px; }
+    .mission-card p { color: #64748B; font-size: 1.1rem; font-weight: 700; line-height: 1.5; margin-bottom: 0; }
+    
+    /* Colores Misión Mágica */
+    .bg-que-hacemos { background-color: #fff5f5; border-color: #FFE6E6; border-bottom: 8px solid #FFB8B8; }
+    .bg-que-hacemos:hover { border-color: #FFB8B8; border-bottom-color: #FF8F8F; }
+    
+    .bg-mision { background-color: #f2fdf9; border-color: #E6FAF4; border-bottom: 8px solid #55efc4; }
+    .bg-mision:hover { border-color: #55efc4; border-bottom-color: #00B894; }
+    
+    .bg-valores { background-color: #f7f6ff; border-color: #ECEBFF; border-bottom: 8px solid #a29bfe; }
+    .bg-valores:hover { border-color: #a29bfe; border-bottom-color: #6C5CE7; }
+
+    /* 4. TARJETAS DE MÓDULOS (Block-Push Dinámico) */
+    .module-tile {
+        background: white;
+        border-radius: 35px;
+        padding: 30px 20px;
+        text-align: center;
+        border: 2px solid #E5E7EB;
+        border-bottom: 8px solid #CBD5E1;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+    }
+    .module-tile:hover {
+        transform: translateY(-6px);
+        border-bottom-width: 10px;
+        border-color: #4db3e6;
+        border-bottom-color: #2B8DBE;
+        background: #F0F9FF;
+    }
+
+    .icon-wrapper { margin-bottom: 15px; display: block; }
+    .module-tile h4 { font-weight: 900; color: #374151; margin-bottom: 10px; text-transform: uppercase; font-size: 1.4rem; }
+    .module-tile p { color: #9CA3AF; font-size: 1.05rem; font-weight: 700; line-height: 1.4; margin: 0; }
+
+    /* 5. MULTIMEDIA HERO RESPONSIVO */
+    .mico-hero-container {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        min-height: 400px; position: relative;
+    }
+    .escena-mico { position: relative; width: 100%; max-width: 380px; aspect-ratio: 1/1; }
+    .video-circular {
+        width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; z-index: 5;
+        border: 8px solid rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    
+    /* 🔴 AHORA SÍ: TOTALMENTE TRANSPARENTE 🔴 */
+    .video-circular video { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: contain; 
+        background: transparent !important; 
+    }
+
+    /* DIBUJITOS FLOTANTES */
+    .mini-deco {
+        position: absolute; width: 70px !important; height: auto; z-index: 50;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); animation: flotarSuave 3s ease-in-out infinite;
+    }
+    .d1 { top: -10px; left: -10px; animation-delay: 0s; }
+    .d2 { top: -10px; right: -10px; animation-delay: 0.5s; }
+    .d3 { bottom: 20px; left: -20px; animation-delay: 1s; }
+    .d4 { bottom: 20px; right: -20px; animation-delay: 1.5s; }
+    @keyframes flotarSuave { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(8deg); } }
+
+    .texto-inferior { margin-top: 30px; text-align: center; z-index: 6; }
+    .texto-inferior h2 { font-weight: 900; text-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+    /* Media Queries para Responsividad Fina */
+    @media (max-width: 991px) {
+        .hero-section { text-align: center; border-radius: 0 0 10% 10%; padding: 60px 0 80px 0; }
+        .d-flex.gap-3.flex-wrap { justify-content: center; }
+        .escena-mico { max-width: 300px; margin-top: 30px; }
+        .mico-hero-container { min-height: auto; }
+    }
+</style>
+
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      
+      <div class="col-lg-5 animate__animated animate__fadeInLeft">
+        <span class="hero-chip"><i class="fa-solid fa-star"></i> Tu espacio de aprendizaje</span>
+        <h1 class="display-2 fw-bold mt-4 mb-3" style="text-shadow: 0 6px 0px rgba(0,0,0,0.15); letter-spacing: -2px;">Blootie</h1>
+        <p class="lead mb-5" style="font-size: 1.4rem; font-weight: 700; opacity: 0.95;">Una experiencia colorida y divertida diseñada especialmente para prejardín.</p>
+        
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="{% url 'login' %}" class="btn-b-yellow">🚀 ¡Vamos a jugar!</a>
+          <a href="#modulos" class="btn-b-outline-white">📚 Ver módulos</a>
+        </div>
+      </div>
+
+      <div class="col-lg-7 mico-hero-container animate__animated animate__fadeInRight">
+          <div class="escena-mico">
+              <img src="{% static 'img/matematicas.png' %}" class="mini-deco d1" alt="figuras">
+              <img src="{% static 'img/podio.png' %}" class="mini-deco d2" alt="cohete">
+              <img src="{% static 'img/cohete.png' %}" class="mini-deco d3" alt="numeros">
+              <img src="{% static 'img/libro.png' %}" class="mini-deco d4" alt="pincel">
+
+              <div class="video-circular">
+                  <video autoplay loop muted playsinline> 
+                      <source src="{% static 'img/mono.webm' %}" type="video/webm">
+                      <source src="{% static 'img/mono.mp4' %}" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          
+          <div class="texto-inferior">
+              <h2 class="display-4 text-white">¡Aprende jugando!</h2>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 mt-5">
+  <div class="container">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold" style="color: #FF4B4B;">Nuestra Misión Mágica</h2>
+        <div style="width: 80px; height: 8px; background: #FF6B81; margin: 15px auto; border-radius: 10px;"></div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-md-4">
+        <div class="mission-card bg-que-hacemos shadow-sm">
+          <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Artist%20palette/3D/artist_palette_3d.png" class="asset-3d-big">
+          <h3>¿Qué hacemos?</h3>
+          <p>¡Creamos universos divertidos con juegos, música y colores para que descubras el mundo cantando y bailando!</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="mission-card bg-mision shadow-sm">
+          <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Rocket/3D/rocket_3d.png" class="asset-3d-big">
+          <h3>Nuestra Misión</h3>
+          <p>Acompañarte en tus primeros pasos escolares, transformando las tareas difíciles en misiones mágicas llenas de sonrisas.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="mission-card bg-valores shadow-sm">
+          <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sparkling%20heart/3D/sparkling_heart_3d.png" class="asset-3d-big">
+          <h3>Súper Valores</h3>
+          <p>Aprender compartiendo con amigos, respetando a los demás y dándote mucho amor en cada juego completado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modulos" class="py-5 mt-4 mb-5">
+  <div class="container">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold" style="color: #1CB0F6;">Nuestros Módulos</h2>
+        <div style="width: 80px; height: 8px; background: #1899D6; margin: 15px auto; border-radius: 10px;"></div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      {% for actividad in actividades %}
+      <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+        <div class="module-tile shadow-sm">
+          <span class="icon-wrapper emoji-to-3d" style="font-size: 4rem;">
+              {{ actividad.icono }}
+          </span>
+          <h4>{{ actividad.get_tipo_display }}</h4>
+          <p>{{ actividad.descripcion }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <div class="text-center w-100 py-5">
+          <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Construction/3D/construction_3d.png" style="width: 80px; margin-bottom: 20px;">
+          <h4 style="color: #64748B; font-weight: 900;">Pronto tendremos nuevos módulos</h4>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+    const emoji3DMap = {
+        '🐶': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Dog%20face/3D/dog_face_3d.png',
+        '🎨': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Artist%20palette/3D/artist_palette_3d.png',
+        '1️⃣': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Input%20numbers/3D/input_numbers_3d.png',
+        '🅰️': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Input%20latin%20uppercase/3D/input_latin_uppercase_3d.png',
+        '👨‍👩‍👧': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/House/3D/house_3d.png',
+        '🧠': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Brain/3D/brain_3d.png',
+        '🖐️': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Waving%20hand/Default/3D/waving_hand_3d_default.png',
+        '💖': 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sparkling%20heart/3D/sparkling_heart_3d.png'
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const containersToReplace = document.querySelectorAll('.emoji-to-3d');
+        
+        containersToReplace.forEach(container => {
+            const rawEmoji = container.innerText.trim();
+            let matched3DUrl = null;
+
+            for (const [emojiKey, url3D] of Object.entries(emoji3DMap)) {
+                if (rawEmoji.includes(emojiKey)) {
+                    matched3DUrl = url3D; break;
+                }
+            }
+
+            if (matched3DUrl) {
+                container.innerHTML = `<img src="${matched3DUrl}" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15)); transition: transform 0.3s;" alt="Módulo">`;
+            } else {
+                container.style.filter = "drop-shadow(0 8px 10px rgba(0,0,0,0.15))";
+            }
+        });
+    });
+</script>
+{% endblock %}

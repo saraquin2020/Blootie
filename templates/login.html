@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+    /* 1. FONDO AZUL ORIGINAL Y NUBES DEL SISTEMA BLOOTIE */
+    .blootie-login-theme {
+        font-family: 'Nunito', sans-serif;
+        background: linear-gradient(180deg, #4db3e6 0%, #78cbfa 100%) !important;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Nubes decorativas para dar profundidad mágica al Login */
+    .blootie-login-theme::before {
+        content: ""; position: absolute; top: 15%; left: -5%;
+        width: 200px; height: 80px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 100px; filter: blur(10px);
+        animation: flotarNube 25s infinite linear; z-index: 0;
+    }
+    .blootie-login-theme::after {
+        content: ""; position: absolute; top: 50%; right: -10%;
+        width: 280px; height: 100px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 100px; filter: blur(8px);
+        animation: flotarNubeLateral 35s infinite linear; z-index: 0;
+    }
+
+    @keyframes flotarNube { 0% { transform: translateX(0); } 100% { transform: translateX(120vw); } }
+    @keyframes flotarNubeLateral { 0% { transform: translateX(0); } 100% { transform: translateX(-120vw); } }
+
+    /* 2. TARJETA BLOCK-PUSH CON MÁXIMO CONTRASTE */
+    .login-card {
+        background: white;
+        border: 4px solid #ffffff;
+        border-bottom: 12px solid #E5E7EB;
+        border-radius: 40px;
+        padding: 50px 40px;
+        max-width: 450px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Brillo plástico superior en la tarjeta */
+    .login-card::before {
+        content: ''; position: absolute; top: 8px; left: 20px; right: 20px; height: 12px;
+        background: rgba(255,255,255,0.6); border-radius: 20px; pointer-events: none; z-index: 2;
+    }
+
+    /* 3. ANIMACIÓN DEL LOGO */
+    .login-logo {
+        width: 90px;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 10px 10px rgba(0,0,0,0.12));
+        animation: floatLogo 3s ease-in-out infinite;
+    }
+    @keyframes floatLogo {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+
+    .login-title {
+        color: #374151;
+        font-weight: 900;
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* 4. CAMPOS DE FORMULARIO */
+    .b-label {
+        font-weight: 900; 
+        color: #9CA3AF; 
+        text-transform: uppercase; 
+        font-size: 0.9rem; 
+        letter-spacing: 0.5px; 
+        margin-bottom: 10px; 
+        display: block; 
+        text-align: left;
+    }
+    .b-input {
+        width: 100%; 
+        border: 3px solid #E2E8F0; 
+        border-radius: 20px; 
+        padding: 15px 20px; 
+        font-weight: 700; 
+        color: #374151; 
+        background: #F8FAFC; 
+        transition: all 0.2s; 
+        font-size: 1.1rem;
+    }
+    .b-input::placeholder { color: #CBD5E1; font-weight: 700; }
+    .b-input:focus { 
+        border-color: #1CB0F6; 
+        box-shadow: 0 0 0 5px rgba(28, 176, 246, 0.2); 
+        outline: none; 
+        background: white; 
+    }
+
+    /* 5. BOTONES BLOCK-PUSH */
+    .btn-b-pink {
+        background: #ff4081; 
+        color: white; 
+        font-size: 1.2rem; 
+        font-weight: 900; 
+        text-transform: uppercase; 
+        padding: 16px; 
+        border-radius: 24px; 
+        text-decoration: none; 
+        border: none; 
+        border-bottom: 6px solid #D81B60; 
+        transition: all 0.1s; 
+        width: 100%; 
+        display: block; 
+        margin-top: 10px; 
+        cursor: pointer;
+    }
+    .btn-b-pink:active { transform: translateY(6px); border-bottom-width: 0; }
+    .btn-b-pink:hover { filter: brightness(1.05); color: white; }
+
+    .btn-b-outline {
+        background: transparent; 
+        color: #1CB0F6; 
+        font-size: 1rem; 
+        font-weight: 900; 
+        padding: 14px; 
+        border-radius: 24px; 
+        text-decoration: none; 
+        border: 3px solid #E2E8F0; 
+        transition: all 0.2s; 
+        width: 100%; 
+        display: block; 
+        margin-top: 15px;
+        text-align: center;
+    }
+    .btn-b-outline:hover { background: #F0F9FF; border-color: #1CB0F6; color: #1899D6; }
+    .btn-b-outline:active { transform: translateY(4px); }
+
+    .asset-3d-hand { width: 35px; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
+</style>
+
+<div class="blootie-login-theme">
+    
+    <div class="login-card animate__animated animate__zoomIn">
+        
+        <div>
+            <img src="{% static 'img/logo_blootie.png' %}" alt="Icono Blootie" class="login-logo">
+            <h2 class="login-title">
+                Ingresar
+                <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Waving%20hand/Default/3D/waving_hand_3d_default.png" class="asset-3d-hand" alt="Saludar">
+            </h2>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                <label class="b-label">Usuario</label>
+                <input type="text" name="username" class="b-input" placeholder="Escribe tu usuario" required>
+            </div>
+            
+            <div class="mb-5">
+                <label class="b-label">Contraseña</label>
+                <input type="password" name="password" class="b-input" placeholder="Escribe tu contraseña" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn-b-pink">
+                    🚀 Iniciar sesión
+                </button>
+                
+                <a href="{% url 'register' %}" class="btn-b-outline">
+                    ¿No tienes cuenta? Regístrate
+                </a>
+            </div>
+        </form>
+        
+    </div>
+
+</div>
+{% endblock %}

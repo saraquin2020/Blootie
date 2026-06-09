@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght=700;900&display=swap" rel="stylesheet">
+
+<style>
+    /* 1. VIEWPORT ESTRICTO (CERO SCROLL) */
+    html, body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+
+    .game-body {
+        height: calc(100vh - 70px); /* Resta del espacio del navbar superior */
+        width: 100%;
+        background-color: #F7F9FC;
+        background-image: radial-gradient(#E2E8F0 2px, transparent 2px);
+        background-size: 30px 30px;
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        padding: 3vh 2vw;
+        font-family: 'Nunito', sans-serif;
+        user-select: none;
+        box-sizing: border-box;
+    }
+
+    /* 2. ENCABEZADO OPTIMIZADO */
+    .header-title {
+        color: #374151; font-size: calc(1.8rem + 0.4vh); font-weight: 900;
+        text-align: center; margin: 0 0 4px 0; text-transform: uppercase;
+    }
+    .header-subtitle {
+        color: #9CA3AF; font-size: calc(0.9rem + 0.2vh); font-weight: 700;
+        text-align: center; margin: 0 0 3vh 0;
+    }
+
+    /* 3. ÁREA DE JUEGO */
+    .match-grid { 
+        display: flex; gap: 40px; justify-content: center; width: 100%; max-width: 650px;
+        height: 50vh; /* Altura máxima para que no empuje el contenedor inferior */
+    }
+    
+    .column { 
+        display: flex; flex-direction: column; gap: 15px; flex: 1; align-items: center; justify-content: center;
+    }
+
+    /* 4. FICHAS BLOCK-PUSH UI */
+    .match-card {
+        background: #FFFFFF;
+        border-radius: 20px; width: 100%; max-width: 220px; height: 90px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        border: 2px solid #E5E7EB; border-bottom: 7px solid #E5E7EB;
+        transition: all 0.1s ease;
+        position: relative; outline: none;
+        box-sizing: border-box;
+    }
+
+    /* Brillo de plástico */
+    .match-card::after {
+        content: ''; position: absolute; top: 5px; left: 10px; right: 10px; height: 10px;
+        background: rgba(255,255,255,0.4); border-radius: 10px; pointer-events: none;
+    }
+
+    .match-card:hover { transform: translateY(-3px); border-bottom-width: 9px; background: #F9FAFB; }
+    
+    /* ESTADOS DE LA FICHA */
+    .match-card.selected { 
+        border-color: #1CB0F6; border-bottom-color: #1899D6; background: #E1F5FE;
+        transform: translateY(5px); border-bottom-width: 2px;
+    }
+
+    .match-card.matched { 
+        border-color: #58CC02 !important; border-bottom-color: #46A302 !important; background: #D7FFB8 !important; 
+        cursor: default; transform: scale(0.96) translateY(4px); border-bottom-width: 2px; opacity: 0.85;
+    }
+
+    .match-card.error {
+        border-color: #FF4B4B !important; border-bottom-color: #EA2B2B !important; background: #FFEDED !important;
+        animation: shakeError 0.4s ease-in-out;
+    }
+
+    @keyframes shakeError {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-8px) rotate(-1deg); }
+        75% { transform: translateX(8px) rotate(1deg); }
+    }
+
+    /* Contenido de fichas */
+    .asset-3d { width: 60px; height: 60px; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); pointer-events: none; }
+    .text-item { font-size: 1.5rem; font-weight: 900; color: #4B5563; text-transform: uppercase; letter-spacing: 0.5px; pointer-events: none; }
+
+    /* 5. FOOTER COMPACTO FIJO (AL LADITO ABAJO) */
+    .footer-fixed {
+        position: fixed;
+        bottom: 20px;
+        right: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Alinea el mico perfectamente a la derecha */
+        gap: 8px;
+        z-index: 9999;
+    }
+
+    .footer-avatar {
+        width: 55px;
+        height: auto;
+        margin-right: 15px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 12px;
+    }
+
+    /* Estilo común de botones 3D */
+    .btn-3d {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 10px 22px;
+        border-radius: 14px;
+        border: none;
+        transition: all 0.1s;
+        font-size: 0.85rem;
+        color: white;
+        display: inline-block;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    .btn-repaso {
+        background: #1CB0F6;
+        border-bottom: 5px solid #1899D6;
+    }
+    .btn-repaso:active { transform: translateY(4px); border-bottom-width: 0; }
+
+    .btn-menu {
+        background: #FF4B4B;
+        border-bottom: 5px solid #EA2B2B;
+    }
+    .btn-menu:active { transform: translateY(4px); border-bottom-width: 0; }
+
+    /* 6. MODAL DE VICTORIA EXTRA BLINDADO */
+    #win-overlay {
+        position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px);
+        display: none; align-items: center; justify-content: center; z-index: 10000;
+    }
+
+    .win-card-pro {
+        background: white; border-radius: 28px; padding: 35px; max-width: 400px; width: 90%;
+        text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes slideUp { from { transform: translateY(80px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .win-title { color: #FFC800; font-size: 2.4rem; font-weight: 900; margin: 10px 0; }
+    .win-subtitle { color: #64748B; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; }
+</style>
+
+<div class="game-body">
+    <div id="game-view" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+        
+        <div class="text-center">
+            <h1 class="header-title">🧩 ¡Une las Parejas!</h1>
+            <p class="header-subtitle">Toca una imagen y luego su palabra correcta</p>
+        </div>
+
+        <div class="match-grid">
+            <div class="column" id="emoji-column"></div>
+            <div class="column" id="text-column"></div>
+        </div>
+    </div>
+
+    <div class="footer-fixed">
+        <div class="button-group">
+            <a href="{% url 'student_dashboard' %}" class="btn-3d btn-menu">Volver al Menú</a>
+        </div>
+    </div>
+
+    <div id="win-overlay">
+        <div class="win-card-pro">
+            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Trophy/3D/trophy_3d.png" style="width:100px; margin-bottom:15px;" alt="Trofeo">
+            <h1 class="win-title">¡LO LOGRASTE!</h1>
+            <p class="win-subtitle">Has unido todas las parejas correctamente.</p>
+            
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button onclick="resetGame()" class="btn-3d btn-repaso" style="flex: 1; font-size: 1rem; padding: 12px 0;">🔄 Reintentar</button>
+                <a href="{% url 'student_dashboard' %}" class="btn-3d btn-menu" style="flex: 1; font-size: 1rem; padding: 12px 0;">🏠 Inicio</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const allItems = [
+        { id: 1, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Dog%20face/3D/dog_face_3d.png', name: 'Perro' },
+        { id: 2, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Red%20apple/3D/red_apple_3d.png', name: 'Manzana' },
+        { id: 3, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Rocket/3D/rocket_3d.png', name: 'Cohete' },
+        { id: 4, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Lion/3D/lion_3d.png', name: 'León' },
+        { id: 5, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Soft%20ice%20cream/3D/soft_ice_cream_3d.png', name: 'Helado' },
+        { id: 6, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Guitar/3D/guitar_3d.png', name: 'Guitarra' },
+        { id: 7, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Cat%20face/3D/cat_face_3d.png', name: 'Gato' },
+        { id: 8, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Turtle/3D/turtle_3d.png', name: 'Tortuga' },
+        { id: 9, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Pizza/3D/pizza_3d.png', name: 'Pizza' },
+        { id: 10, img: 'https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Elephant/3D/elephant_3d.png', name: 'Elefante' }
+    ];
+
+    let selection = null;
+    let corrects = 0;
+    const totalPairs = 4;
+    let isProcessing = false;
+
+    // MOTOR DE AUDIO NATIVO
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+
+        if (type === 'click') {
+            // Sonido corto e interactivo al seleccionar
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(450, now);
+            osc.frequency.exponentialRampToValueAtTime(900, now + 0.06);
+            gainNode.gain.setValueAtTime(0.12, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+            osc.start(now);
+            osc.stop(now + 0.06);
+        } else if (type === 'correct') {
+            // Tono alegre ascendente doble
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(587.33, now); // D5
+            osc.frequency.setValueAtTime(880.00, now + 0.08); // A5
+            gainNode.gain.setValueAtTime(0.18, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+            osc.start(now);
+            osc.stop(now + 0.25);
+        } else if (type === 'wrong') {
+            // Ruido seco/grave para el fallo
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(180, now);
+            osc.frequency.linearRampToValueAtTime(90, now + 0.25);
+            gainNode.gain.setValueAtTime(0.15, now);
+            gainNode.gain.linearRampToValueAtTime(0.01, now + 0.25);
+            osc.start(now);
+            osc.stop(now + 0.25);
+        } else if (type === 'win') {
+            // Fanfarria clásica de victoria completa
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, now); // C5
+            osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+            osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+            osc.frequency.setValueAtTime(1046.50, now + 0.3); // C6
+            gainNode.gain.setValueAtTime(0.2, now);
+            gainNode.gain.exponentialRampToValueAtTime(0.02, now + 0.6);
+            osc.start(now);
+            osc.stop(now + 0.6);
+        }
+    }
+
+    function resetGame() {
+        document.getElementById('emoji-column').innerHTML = '';
+        document.getElementById('text-column').innerHTML = '';
+        document.getElementById('win-overlay').style.display = 'none';
+        document.getElementById('game-view').style.display = 'flex';
+        corrects = 0;
+        selection = null;
+        isProcessing = false;
+
+        const selectedItems = [...allItems].sort(() => 0.5 - Math.random()).slice(0, totalPairs);
+        const emojiSide = [...selectedItems].sort(() => 0.5 - Math.random());
+        const textSide = [...selectedItems].sort(() => 0.5 - Math.random());
+
+        emojiSide.forEach(d => {
+            const c = document.createElement('div');
+            c.className = 'match-card';
+            c.innerHTML = `<img src="${d.img}" class="asset-3d">`;
+            c.onclick = () => check(c, d.id, 'image');
+            document.getElementById('emoji-column').appendChild(c);
+        });
+
+        textSide.forEach(d => {
+            const c = document.createElement('div');
+            c.className = 'match-card';
+            c.innerHTML = `<span class="text-item">${d.name}</span>`;
+            c.onclick = () => check(c, d.id, 'text');
+            document.getElementById('text-column').appendChild(c);
+        });
+    }
+
+    function check(card, id, type) {
+        if (isProcessing || card.classList.contains('matched') || card.classList.contains('selected')) return;
+
+        // Reproducir sonido básico de selección táctil
+        playSound('click');
+
+        if (!selection) {
+            selection = { card, id, type };
+            card.classList.add('selected');
+        } else {
+            if (selection.type === type) {
+                selection.card.classList.remove('selected');
+                selection = { card, id, type };
+                card.classList.add('selected');
+                return;
+            }
+
+            isProcessing = true;
+
+            if (selection.id === id) {
+                card.classList.add('matched');
+                selection.card.classList.remove('selected');
+                selection.card.classList.add('matched');
+                
+                playSound('correct'); // Sonido de pareja correcta
+                confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 }, colors: ['#58CC02', '#1CB0F6'] });
+                corrects++;
+                selection = null;
+                isProcessing = false;
+
+                if (corrects === totalPairs) {
+                    setTimeout(() => {
+                        playSound('win'); // Sonido especial de victoria absoluta
+                        document.getElementById('win-overlay').style.display = 'flex';
+                        confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } });
+                    }, 500);
+                }
+            } else {
+                card.classList.add('error');
+                selection.card.classList.add('error');
+                playSound('wrong'); // Sonido de error
+                
+                setTimeout(() => {
+                    card.classList.remove('error');
+                    selection.card.classList.remove('error', 'selected');
+                    selection = null;
+                    isProcessing = false;
+                }, 500);
+            }
+        }
+    }
+
+    resetGame();
+</script>
+{% endblock %}

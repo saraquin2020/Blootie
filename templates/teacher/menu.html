@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Control de Actividades 🕹️</h2>
+        <a href="{% url 'configuracion' %}" class="btn btn-outline-secondary rounded-pill d-flex align-items-center gap-2">
+            <i class="bi bi-gear-fill"></i> Configuración
+        </a>
+    </div>
+
+    <div class="row">
+        {% for actividad in actividades %}
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 {% if not actividad.esta_activa %}opacity-50{% endif %}">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">{{ actividad.nombre }}</h5>
+                        <small class="{% if actividad.esta_activa %}text-success{% else %}text-danger{% endif %} fw-bold">
+                            {% if actividad.esta_activa %}● Activo{% else %}○ Bloqueado{% endif %}
+                        </small>
+                    </div>
+                    <form method="POST" action="{% url 'gestionar_actividades' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="actividad_id" value="{{ actividad.id }}">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input fs-3" type="checkbox" role="switch" 
+                                   onChange="this.form.submit()" {% if actividad.esta_activa %}checked{% endif %}>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No hay actividades creadas. Agrégalas desde el panel de Admin.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

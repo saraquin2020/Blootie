@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+    /* 1. FONDO Y DECORACIÓN PRO */
+    html, body {
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, #57b9ff 0%, #a2d9ff 100%);
+        font-family: 'Recursive', sans-serif;
+    }
+
+    .nube {
+        position: absolute;
+        background: white;
+        border-radius: 50px;
+        opacity: 0.8;
+        z-index: 1;
+        animation: moverNubes 25s linear infinite;
+    }
+    .nube::after, .nube::before { content: ''; position: absolute; background: white; border-radius: 50%; }
+    .nube1 { width: 100px; height: 40px; top: 12%; left: -150px; }
+    .nube2 { width: 140px; height: 50px; top: 22%; left: -200px; animation-delay: 7s; }
+    
+    @keyframes moverNubes {
+        from { left: -150px; }
+        to { left: 110vw; }
+    }
+
+    .suelo-decor {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 12vh;
+        background: #87d37c;
+        z-index: 2;
+        border-top: 5px solid #6dbb62;
+    }
+
+    .contenedor-principal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* 2. MARCADOR Y BOTÓN REGRESAR CORREGIDO */
+    .controles-top {
+        position: fixed;
+        top: 80px;
+        left: 25px;
+        display: flex;
+        gap: 15px;
+        z-index: 1000;
+    }
+
+    .marcador-pro {
+        background: white;
+        border: 4px solid #f89406;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-weight: 800;
+        font-size: 1.6rem;
+        color: #f89406;
+        box-shadow: 0 5px 0 rgba(248, 148, 6, 0.2);
+    }
+
+    .btn-regresar {
+        background: #f89406;
+        color: white !important;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        text-decoration: none !important;
+        box-shadow: 0 5px 0 #d37d05;
+        display: flex;
+        align-items: center;
+    }
+
+    /* 3. GLOBO DE DIÁLOGO */
+    .globo-dialogo {
+        background: white;
+        border: 6px solid #f89406;
+        border-radius: 60px;
+        padding: 15px 50px;
+        margin-top: 25px;
+        font-weight: 800;
+        font-size: 2.3rem;
+        box-shadow: 0 10px 0px rgba(248, 148, 6, 0.2);
+        z-index: 100;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* 4. STAND Y MESA (TU DISPOSICIÓN ORIGINAL) */
+    .area-juego {
+        position: relative;
+        height: 72vh;
+        aspect-ratio: 1.2 / 1;
+        margin-top: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .stand-img { height: 100%; width: auto; z-index: 5; }
+
+    .estante-frutas {
+        position: absolute;
+        bottom: 42%;
+        width: 44%; 
+        height: 15%; 
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        align-items: end;
+        z-index: 50;
+    }
+
+    .fruta {
+        width: 90px; 
+        cursor: grab;
+        filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.2));
+        transition: transform 0.2s;
+        margin: 0 auto;
+    }
+
+    /* 5. CARRITO Y SALIR */
+    .carrito-zona {
+        position: absolute;
+        bottom: 5%;
+        right: -8%;
+        width: 36%;
+        z-index: 20;
+    }
+
+    .btn-salir {
+        position: fixed;
+        top: 20px; right: 20px;
+        background: #ff5e5e;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 40px;
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: 0 5px 0 #d63031;
+        z-index: 1000;
+    }
+</style>
+
+<div class="nube nube1"></div>
+<div class="nube nube2"></div>
+<div class="suelo-decor"></div>
+
+<div class="contenedor-principal">
+    <div class="controles-top">
+        <div class="marcador-pro">Puntos: <span id="pts">0</span> ⭐</div>
+        <a href="{% url 'student_dashboard' %}" class="btn-regresar">🎮 Ver Juegos</a>
+    </div>
+    
+    <div class="globo-dialogo" id="mensaje-mono">¡Cargando Blootie!</div>
+
+    <div class="area-juego">
+        <img src="{% static 'img/stand.png' %}" class="stand-img">
+        <div class="estante-frutas" id="estante"></div>
+
+        <div class="carrito-zona" id="carrito-drop">
+            <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:80;"></div>
+            <img src="{% static 'img/carrito.png' %}" style="width:100%; pointer-events:none;">
+        </div>
+    </div>
+</div>
+
+<a href="{% url 'home' %}" class="btn-salir">Salir 🚪</a>
+
+<script>
+    const todasLasFrutas = ["pera", "manzana", "banano", "fresa", "cereza", "uvas", "coco", "pina", "sandia", "naranja", "kiwi", "limon"];
+    let frutaObjetivo = "";
+    let puntos = 0;
+
+    function iniciarRonda() {
+        const estante = document.getElementById('estante');
+        const globo = document.getElementById('mensaje-mono');
+        estante.innerHTML = ''; 
+        
+        const seleccionadas = [...todasLasFrutas].sort(() => 0.5 - Math.random()).slice(0, 3);
+        frutaObjetivo = seleccionadas[Math.floor(Math.random() * seleccionadas.length)];
+        
+        const nombreDisplay = frutaObjetivo.charAt(0).toUpperCase() + frutaObjetivo.slice(1);
+        globo.innerHTML = `¡Hola! Trae la <span style="color:#f39c12">${nombreDisplay}</span>`;
+
+        seleccionadas.forEach(nombre => {
+            const div = document.createElement('div');
+            div.style.textAlign = "center";
+            const img = document.createElement('img');
+            img.src = `/static/img/${nombre}.png`;
+            img.className = 'fruta';
+            img.draggable = true;
+            img.addEventListener('dragstart', (e) => e.dataTransfer.setData('tipo', nombre));
+            div.appendChild(img);
+            estante.appendChild(div);
+        });
+    }
+
+    const carritoArea = document.getElementById('carrito-drop');
+    carritoArea.addEventListener('dragover', (e) => e.preventDefault());
+    carritoArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const capturado = e.dataTransfer.getData('tipo');
+        if (capturado === frutaObjetivo) {
+            puntos += 10;
+            document.getElementById('pts').innerText = puntos;
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.8 } });
+            document.getElementById('mensaje-mono').innerHTML = "¡Excelente! +10 puntos 🌟";
+            setTimeout(iniciarRonda, 1500);
+        } else {
+            document.getElementById('mensaje-mono').innerHTML = "¡Ups! Esa no es 🐵";
+            setTimeout(() => {
+                const nombreDisplay = frutaObjetivo.charAt(0).toUpperCase() + frutaObjetivo.slice(1);
+                document.getElementById('mensaje-mono').innerHTML = `¡Hola! Trae la <span style="color:#f39c12">${nombreDisplay}</span>`;
+            }, 1000);
+        }
+    });
+
+    iniciarRonda();
+</script>
+{% endblock %}
