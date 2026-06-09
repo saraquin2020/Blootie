@@ -1,0 +1,1655 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$TT767iCvjDEMtT5qxx2hBm$hgEdpJoSXQk6HTZtVN6cM3Q7Yo+I05iUa1+pjCICOB8=",
+        "last_login": "2026-05-16T19:29:08.322Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Administrador",
+        "last_name": "Blootie",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-03-09T04:40:09.072Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$q2MRzgz9huMNGyxsBHropM$QzRY2iOoTg8PHL6BLux37CClY9ecxIcvy3uQ5/vKTsc=",
+        "last_login": "2026-06-09T15:59:25.452Z",
+        "is_superuser": false,
+        "username": "profe",
+        "first_name": "Profe",
+        "last_name": "Blootie",
+        "email": "mmelendez12@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-09T04:40:10.020Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ferEArdBrCtGojR4eSy1EX$gQGfmADtoHHKv6txH1iCLlIOWIO7oA78JL2qbr5gpfo=",
+        "last_login": "2026-06-09T17:23:28.280Z",
+        "is_superuser": false,
+        "username": "nina1",
+        "first_name": "Nina",
+        "last_name": "Blootie",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-09T04:40:11.228Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$2fBvyintYECDlIdQQmonMt$zXkWFhgTvmYZU9cODpy5dolsKW5SyirAcBKpuWj1fKU=",
+        "last_login": "2026-03-09T18:31:04.093Z",
+        "is_superuser": false,
+        "username": "sarita",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-09T18:30:43.571Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$MZIOZsdTW0W6DY7wRngL5x$HO/dcM+S3vVJYbGVHjnykenn6B4XsJcTGfG42zu5Nkc=",
+        "last_login": "2026-06-06T14:47:25.575Z",
+        "is_superuser": false,
+        "username": "sofia",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-02T20:16:40.920Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$5ZB6acpJu3kyfpxIRl6ht0$5Iyj8tm/+vQLoEhUKB+JGP4fLiMZIK1r8w2veGmmKrY=",
+        "last_login": "2026-05-03T21:58:44.289Z",
+        "is_superuser": false,
+        "username": "sixseven",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-03T21:57:56.505Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$rZs27knx0AsJNP0QwATtY3$Xf7ikp3vj0KmG3cGYLz5bSKtCKJsAFHxhKRWnMcPabY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "gabrdaza",
+        "first_name": "Gabrdaza",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-06-09T15:44:24.997Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$1CXNwJgH4ydYgHYhEPYuoD$LxUHVGoz9ftXd9jJSNgH0XVyguXJiiqHTBvylp07Pmk=",
+        "last_login": "2026-06-09T15:53:14.752Z",
+        "is_superuser": false,
+        "username": "mariana",
+        "first_name": "Mariana",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:52:54.678Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$lb2fVYxbn4f7AgMdseLd6X$4sw33t5nd1wWz/PpaQBUWTsgDGY8Q+bGujx9H5U8RPk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "gabdaza",
+        "first_name": "Gabdaza",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:55:33.903Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Wlih9e6HSbEcBv8p6xfrec$7/j+uR33en1egzOPHEnPaoxgrEoJ/0ROsy82mUP3U+4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "sanguti",
+        "first_name": "Sanguti",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:56:03.241Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$3mFLld0aeMLHBXOFHpANYN$b7SINI4t3GYng5RLtM3/QfzBCAL1qeuUFS/+oo6mdBQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "jacorti",
+        "first_name": "Jacorti",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:56:34.256Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$0ceAoHmweBv7wRcd99ko6O$5ybmPx+ey1/V8AxVCBwwQ/rwtxbcRr71pFyS4lYx9mA=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "maxpied",
+        "first_name": "Maxpied",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:56:56.206Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$XVOc7aretNWwXKbOYMELRy$U2dRMLnePTDMjdo9fIKPaYS4C5rhfUbdz56h9vnypD0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "antpinz",
+        "first_name": "Antpinz",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:57:15.789Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$BrCZejj2Sc0hfutU638wXX$s8eSRhEW1dhIGDX2tUknEqzFz5R9KR92Yt0TAgEvDdI=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "celport",
+        "first_name": "Celport",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:57:35.037Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$7bi8aWDCXmvjOJH23JWfqm$CF3T9K24fZQtyzjwM4QPvqCi6KKeIxntBwa621HQExg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "maxrend",
+        "first_name": "Maxrend",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:57:59.194Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$EXruFsH2OtjpaelOAO3YXR$PQVlzCBg0lCSF3u0N7yXpjt4eCYyyNYcOJd3zqVJ4X8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "samroja",
+        "first_name": "Samroja",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:58:22.920Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$B8biv76WKytKuwI86KqZRV$qlhJyxHbOH1s8ev/TxIYEUCuRnrwuzM5iKJK6NonQ0o=",
+        "last_login": "2026-06-09T15:58:56.802Z",
+        "is_superuser": false,
+        "username": "zoemosq",
+        "first_name": "Zoemosq",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-09T15:58:45.200Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "4pja0x512vnljxg4impl65e8ax8yxzi4",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlnrX2xT0nMGy7ve4ABypDipEHeHSCmgfTPzXiLlba1p67ykqYizMOL0u2GmB7cdlHtut1nS3NZlQrkr8qBdXufCz8vh_h3U3Ou3dgMEBlWisay0BhXIoAFiG5TNELzzFjyW0aiI0TivFSEyZQwDlZHE-wOzyDeQ:1vzSZE:b5X2jUXYqDn_ISiOsG44dTx7TsVO_GbxFdjpOCWhp60",
+        "expire_date": "2026-03-23T04:50:08.513Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5ypgd09aejzgbfqf5vxboy3fwhv14c42",
+    "fields": {
+        "session_data": ".eJxVjDsOwyAUBO9CHaFn_AGnTO8zoOUBwUkEkrGrKHePLblI2p2ZfQuLbU12q2GxsxdX0YrL7-bAz5AP4B_I9yK55HWZnTwUedIqp-LD63a6fwcJNe110zJxowzz6FwHUloNGgwy1DtPIY4NcadjG1lh4F1GD2jVAUQmsPh8Ae3BOIo:1wKJa1:TfbiorlUXgBPcjq-MFZ8oWd8NYkiwYwHi3K2ZuanO1I",
+        "expire_date": "2026-05-19T17:29:09.543Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "9l52e5ntt9gxe41piuqdohnf9ypqzxu5",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSHlMTB16d5vaAYYpGogKe3K-O_apAvd3nPOfYmJtrVMW-dlmpM4CyNOv1ug-OC6g3Snemsytrouc5C7Ig_a5bUlfl4O9--gUC_fmkD7gVIG5Tjk4BgZrQIcDMJoGTEr75PRzqoBOCPhqCNY7RMog0Ti_QHV0Tcp:1w8gQC:vj7tgf940me69MdbHOa06-l_ahJqe2V2LN7dYENeAk4",
+        "expire_date": "2026-04-17T15:26:56.327Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "a3rh6e6oesnvr0rrm79xtlvvus53ao6w",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCgHQGX7nuGZpgZpGpoUtqV8e7apAvd_vfef6kRt7WMW5NlnFhdlFOn3y0hPaTugO9Yb7Omua7LlPSu6IM2Pcwsz-vh_h0UbOVbA_hzF3rsHGfwHLyQASQTpGex7FAoxhSyAcgWQBxFYtORFROjYFDvD-V_OEE:1wKfWa:TOVvrWBFzeVSY4A34DIG1yGOXkaunaX-f50hupw39UM",
+        "expire_date": "2026-05-20T16:55:04.107Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "a8xht0cq7ow65t3y5x4cfn1cx8j5yxjj",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAURP-FtSFwebt0328gPC5SNZCUdmX8d9ukC11NMufMvIkP21r9NnDxcyZXosjlt4shPbEdID9Cu3eaeluXOdJDoScddOoZX7fT_TuoYdR9zQyPSjgBWroCSUctQ5E5caa1NSVLqZQAziVze7oSGbMI2QAqSCgs-XwBsAE2hQ:1wJJkX:AOBoXrOf49d6BIkYzx3KlhiBRQ3k5SJuoUbboW-tWXE",
+        "expire_date": "2026-05-16T23:27:53.159Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ect7q4dd5tj2ns100jo0cncu7o4vp430",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCgHQGX7nuGZpgZpGpoUtqV8e7apAvd_vfef6kRt7WMW5NlnFhdlFOn3y0hPaTugO9Yb7Omua7LlPSu6IM2Pcwsz-vh_h0UbOVbA_hzF3rsHGfwHLyQASQTpGex7FAoxhSyAcgWQBxFYtORFROjYFDvD-V_OEE:1wKfWb:Gmeo9x05EiTuJPfQBQcv43XFQz9TBBaYc0o0xS4npN8",
+        "expire_date": "2026-05-20T16:55:05.732Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "geoma2gpgoc564xdu2utvev7vs3zbj3l",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSHlMTB16d5vaAYYpGogKe3K-O_apAvd3nPOfYmJtrVMW-dlmpM4CyNOv1ug-OC6g3Snemsytrouc5C7Ig_a5bUlfl4O9--gUC_fmkD7gVIG5Tjk4BgZrQIcDMJoGTEr75PRzqoBOCPhqCNY7RMog0Ti_QHV0Tcp:1wItLC:qr06KyaaEhHLyzfy2CDyQ3Cst86lv7vEp6UG9VfrM0E",
+        "expire_date": "2026-05-15T19:15:58.786Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "kjf4z7rxh6mun70bwjmqhzjm7616c2rx",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCgHQGX7nuGZpgZpGpoUtqV8e7apAvd_vfef6kRt7WMW5NlnFhdlFOn3y0hPaTugO9Yb7Omua7LlPSu6IM2Pcwsz-vh_h0UbOVbA_hzF3rsHGfwHLyQASQTpGex7FAoxhSyAcgWQBxFYtORFROjYFDvD-V_OEE:1wKfWY:tdBklMvCVjuOdOp20Cu1Ar9aYOYpo9dH36bK2HGGzXY",
+        "expire_date": "2026-05-20T16:55:02.596Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "pllz0nrspjmgbhx8mhmiyk9jx7dyz25w",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAURP-FtSFwebt0328gPC5SNZCUdmX8d9ukC11NMufMvIkP21r9NnDxcyZXosjlt4shPbEdID9Cu3eaeluXOdJDoScddOoZX7fT_TuoYdR9zQyPSjgBWroCSUctQ5E5caa1NSVLqZQAziVze7oSGbMI2QAqSCgs-XwBsAE2hQ:1wJJTP:h62q8NrQ0Czw-3ikMIYk2lqfNgoN7Y8TrL77VinD0i4",
+        "expire_date": "2026-05-16T23:10:11.006Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "tkeecfdoabn0gm01u9f3o2kuc0mqxglu",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hCgHQGX7nuGZpgZpGpoUtqV8e7apAvd_vfef6kRt7WMW5NlnFhdlFOn3y0hPaTugO9Yb7Omua7LlPSu6IM2Pcwsz-vh_h0UbOVbA_hzF3rsHGfwHLyQASQTpGex7FAoxhSyAcgWQBxFYtORFROjYFDvD-V_OEE:1wKfWV:0HGb8MOGYOd-ULU5uh1-s7w3WxCDTq6QWu7JHTcmFK4",
+        "expire_date": "2026-05-20T16:54:59.249Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uih5remssbp5flq7tcci8538b0kawqay",
+    "fields": {
+        "session_data": ".eJxVjDsOwyAUBO9CHaFn_AGnTO8zoOUBwUkEkrGrKHePLblI2p2ZfQuLbU12q2GxsxdX0YrL7-bAz5AP4B_I9yK55HWZnTwUedIqp-LD63a6fwcJNe110zJxowzz6FwHUloNGgwy1DtPIY4NcadjG1lh4F1GD2jVAUQmsPh8Ae3BOIo:1wKJa0:8pIu7WL1-BGipoli1_UuLyPHfE14qsQcwigOHI3lHBY",
+        "expire_date": "2026-05-19T17:29:08.259Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ym18jfq1qmkuelmzq0zlasbvo03mswjl",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSEyw6O4dN9vIMNApWogKe3K-O_apAvd3nPOfYlA21rC1vMS5iQuAsXpd4vEj1x3kO5Ub01yq-syR7kr8qBdji3l5_Vw_w4K9fKtVZ4go0_E2ps0sQWHzgxaKaaoLShvB-sxAoAnsAlZO4iIrM7gMxnx_gDV9jcQ:1wX0Ai:Z0dqcZnMo_3_QFQyXwpUHsLw214obukNS87F_pIQa-s",
+        "expire_date": "2026-06-23T17:23:28.287Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "zs9ii0lh2mfrxxx7o84saq7tccraz0j3",
+    "fields": {
+        "session_data": ".eJxVjDsOwyAUBO9CHaFn_AGnTO8zoOUBwUkEkrGrKHePLblI2p2ZfQuLbU12q2GxsxdX0YrL7-bAz5AP4B_I9yK55HWZnTwUedIqp-LD63a6fwcJNe110zJxowzz6FwHUloNGgwy1DtPIY4NcadjG1lh4F1GD2jVAUQmsPh8Ae3BOIo:1wKJZx:PET1kmb9_rF5xffe8SitjLBJ3U200SmdgJsZb2HtRGk",
+        "expire_date": "2026-05-19T17:29:05.290Z"
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "rol": "admin",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "profe"
+        ],
+        "rol": "profesor",
+        "avatar": "👩‍🏫",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "nina1"
+        ],
+        "rol": "estudiante",
+        "avatar": "🧒",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "sofia"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": [
+            "profe"
+        ]
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "mariana"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "gabdaza"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "sanguti"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "jacorti"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "maxpied"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "antpinz"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "celport"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "maxrend"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "samroja"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.perfil",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "zoemosq"
+        ],
+        "rol": "estudiante",
+        "avatar": "🌈",
+        "profesor_asignado": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 1,
+    "fields": {
+        "titulo": "Reconocer las vocales",
+        "tipo": "vocales",
+        "descripcion": "Aprender A, E, I, O, U con apoyo visual.",
+        "icono": "🔤",
+        "fecha_creacion": "2026-03-09T04:40:12.237Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 2,
+    "fields": {
+        "titulo": "Contar del 1 al 5",
+        "tipo": "numeros",
+        "descripcion": "Reconocer números y cantidades básicas.",
+        "icono": "🔢",
+        "fecha_creacion": "2026-03-09T04:40:12.251Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 3,
+    "fields": {
+        "titulo": "Mis colores favoritos",
+        "tipo": "colores",
+        "descripcion": "Identificar rojo, azul, amarillo y verde.",
+        "icono": "🎨",
+        "fecha_creacion": "2026-03-09T04:40:12.261Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 4,
+    "fields": {
+        "titulo": "Animales amigables",
+        "tipo": "animales",
+        "descripcion": "Identificar animales comunes con apoyo visual.",
+        "icono": "🐻",
+        "fecha_creacion": "2026-03-09T04:40:12.273Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 5,
+    "fields": {
+        "titulo": "Mi familia",
+        "tipo": "familia",
+        "descripcion": "Reconocer miembros cercanos de la familia.",
+        "icono": "👨‍👩‍👧",
+        "fecha_creacion": "2026-03-09T04:40:12.291Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 6,
+    "fields": {
+        "titulo": "Valores bonitos",
+        "tipo": "valores",
+        "descripcion": "Respeto, amor, amistad y compartir.",
+        "icono": "💛",
+        "fecha_creacion": "2026-03-09T04:40:12.306Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 7,
+    "fields": {
+        "titulo": "Partes del cuerpo",
+        "tipo": "cuerpo",
+        "descripcion": "Conocer ojos, nariz, orejas y manos.",
+        "icono": "🧍",
+        "fecha_creacion": "2026-03-09T04:40:12.321Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.actividad",
+    "pk": 8,
+    "fields": {
+        "titulo": "Juego de memoria",
+        "tipo": "memoria",
+        "descripcion": "Asociar parejas visuales.",
+        "icono": "🧠",
+        "fecha_creacion": "2026-03-09T04:40:12.337Z",
+        "creado_por": null
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 1,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-03-09T04:51:33.236Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 2,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-03-09T04:51:36.626Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 3,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-03-09T04:52:16.272Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 4,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "valores",
+        "puntaje": 10,
+        "detalle": "Reconoció valores.",
+        "fecha_creacion": "2026-03-09T04:52:37.735Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 5,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "vocales",
+        "puntaje": 10,
+        "detalle": "Reconoció las vocales básicas.",
+        "fecha_creacion": "2026-03-09T17:36:25.938Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 6,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "colores",
+        "puntaje": 10,
+        "detalle": "Reconoció colores básicos.",
+        "fecha_creacion": "2026-03-09T17:40:19.316Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 7,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "colores",
+        "puntaje": 10,
+        "detalle": "Reconoció colores básicos.",
+        "fecha_creacion": "2026-03-09T17:40:30.960Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 8,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "vocales",
+        "puntaje": 10,
+        "detalle": "Reconoció las vocales básicas.",
+        "fecha_creacion": "2026-03-09T18:18:04.224Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 9,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-04-02T21:25:00.344Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 10,
+    "fields": {
+        "usuario": [
+            "profe"
+        ],
+        "actividad_ref": null,
+        "actividad": "vocales",
+        "puntaje": 10,
+        "detalle": "Reconoció las vocales básicas.",
+        "fecha_creacion": "2026-04-28T01:28:41.008Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 11,
+    "fields": {
+        "usuario": [
+            "sofia"
+        ],
+        "actividad_ref": null,
+        "actividad": "vocales",
+        "puntaje": 10,
+        "detalle": "Reconoció las vocales básicas.",
+        "fecha_creacion": "2026-05-02T20:27:03.922Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 12,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-05-03T00:00:20.292Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 13,
+    "fields": {
+        "usuario": [
+            "admin"
+        ],
+        "actividad_ref": null,
+        "actividad": "vocales",
+        "puntaje": 10,
+        "detalle": "Reconoció las vocales básicas.",
+        "fecha_creacion": "2026-05-03T19:51:58.402Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 14,
+    "fields": {
+        "usuario": [
+            "sofia"
+        ],
+        "actividad_ref": null,
+        "actividad": "valores",
+        "puntaje": 10,
+        "detalle": "Reconoció valores.",
+        "fecha_creacion": "2026-05-03T21:54:13.370Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 15,
+    "fields": {
+        "usuario": [
+            "sixseven"
+        ],
+        "actividad_ref": null,
+        "actividad": "cuerpo",
+        "puntaje": 10,
+        "detalle": "Reconoció partes del cuerpo.",
+        "fecha_creacion": "2026-05-03T21:58:56.510Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 16,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-05-23T01:35:58.823Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 17,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-05-27T02:24:56.252Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 18,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-05-27T19:05:53.225Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 19,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-06-05T02:10:59.891Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 20,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-06-05T15:54:46.051Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 21,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-06-05T23:38:40.804Z"
+    }
+},
+{
+    "model": "blootie_app.progreso",
+    "pk": 22,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "actividad_ref": null,
+        "actividad": "memoria",
+        "puntaje": 10,
+        "detalle": "Jugó memoria.",
+        "fecha_creacion": "2026-06-09T17:55:38.399Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 1,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "nombre": "Mente brillante",
+        "descripcion": "Completó el juego de memoria.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-03-09T04:51:33.247Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 2,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "nombre": "Corazón amable",
+        "descripcion": "Completó el módulo de valores.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-03-09T04:52:37.747Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 3,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "nombre": "Explorador de vocales",
+        "descripcion": "Completó el módulo de vocales.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-03-09T17:36:25.975Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 4,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "nombre": "Artista del color",
+        "descripcion": "Completó el módulo de colores.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-03-09T17:40:19.340Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 5,
+    "fields": {
+        "usuario": [
+            "profe"
+        ],
+        "nombre": "Explorador de vocales",
+        "descripcion": "Completó el módulo de vocales.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-04-28T01:28:41.015Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 6,
+    "fields": {
+        "usuario": [
+            "sofia"
+        ],
+        "nombre": "Explorador de vocales",
+        "descripcion": "Completó el módulo de vocales.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-05-02T20:27:03.970Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 7,
+    "fields": {
+        "usuario": [
+            "admin"
+        ],
+        "nombre": "Explorador de vocales",
+        "descripcion": "Completó el módulo de vocales.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-05-03T19:51:58.419Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 8,
+    "fields": {
+        "usuario": [
+            "sofia"
+        ],
+        "nombre": "Corazón amable",
+        "descripcion": "Completó el módulo de valores.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-05-03T21:54:13.408Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 9,
+    "fields": {
+        "usuario": [
+            "sixseven"
+        ],
+        "nombre": "Conozco mi cuerpo",
+        "descripcion": "Completó el módulo de cuerpo.",
+        "icono": "🏆",
+        "fecha_creacion": "2026-05-03T21:58:56.527Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 10,
+    "fields": {
+        "usuario": [
+            "nina1"
+        ],
+        "nombre": "Gran Memoria",
+        "descripcion": "Excelente trabajo en el juego de memoria",
+        "icono": "🧠",
+        "fecha_creacion": "2026-05-16T20:45:22.615Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 11,
+    "fields": {
+        "usuario": [
+            "sofia"
+        ],
+        "nombre": "Buen compañero",
+        "descripcion": "Excelente muestra de repeto",
+        "icono": "🚀",
+        "fecha_creacion": "2026-06-05T16:05:22.419Z"
+    }
+},
+{
+    "model": "blootie_app.logro",
+    "pk": 12,
+    "fields": {
+        "usuario": [
+            "sofia"
+        ],
+        "nombre": "Felictaciones, lo lograste.",
+        "descripcion": "Asignado por el profesor.",
+        "icono": "⭐",
+        "fecha_creacion": "2026-06-05T17:39:02.098Z"
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 9,
+    "fields": {
+        "nombre": "Vocales",
+        "slug": "",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 10,
+    "fields": {
+        "nombre": "Matemáticas",
+        "slug": "matematicas",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 11,
+    "fields": {
+        "nombre": "Colores",
+        "slug": "colores",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 12,
+    "fields": {
+        "nombre": "Animales",
+        "slug": "animales",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 13,
+    "fields": {
+        "nombre": "Familia",
+        "slug": "familia",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 14,
+    "fields": {
+        "nombre": "Valores",
+        "slug": "valores",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 15,
+    "fields": {
+        "nombre": "Cuerpo",
+        "slug": "cuerpo",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 16,
+    "fields": {
+        "nombre": "Memoria",
+        "slug": "memoria",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 17,
+    "fields": {
+        "nombre": "Burbujas",
+        "slug": "burbujas",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 18,
+    "fields": {
+        "nombre": "Mercadito",
+        "slug": "mercadito",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 19,
+    "fields": {
+        "nombre": "Unir",
+        "slug": "unir",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.configuracionactividad",
+    "pk": 20,
+    "fields": {
+        "nombre": "Plana",
+        "slug": "plana",
+        "esta_activa": true
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 3,
+    "fields": {
+        "titulo": "La tortuga y la liebre        🐇🐢",
+        "portada": "cuentos/portadas/liebre.png",
+        "contenido": "Había una vez una liebre muy presumida que decía ser la más veloz de todo el bosque. Siempre se burlaba de la tranquila y lenta tortuga.\r\n\r\nUn día, la tortuga, cansada de las burlas, desafió a la liebre a una carrera. La liebre, orgullosa y engreída, aceptó el reto de inmediato. Al día siguiente, todos los animales se reunieron para presenciar la gran competencia.\r\n\r\nLa liebre, muy confiada, dejó que la tortuga tomara ventaja mientras se quedaba en la línea de salida riéndose de ella. La tortuga comenzó la carrera con paso lento pero constante, sin pensar en nada más que en llegar a la meta.\r\n\r\nPoco después, la liebre empezó a correr, pero se detuvo en un prado a descansar y allí... ¡se quedó profundamente dormida! La tortuga ya estaba a punto de llegar a la meta cuando, de repente, la liebre despertó.\r\n\r\nAl darse cuenta de cuánto tiempo había pasado, la liebre se levantó y corrió lo más rápido que pudo. Sin embargo, no logró alcanzar a la tortuga, quien acababa de ganar la carrera.\r\n\r\nMoraleja: Nunca te burles de los demás. Con paciencia y esfuerzo, lograremos nuestras metas.",
+        "audio": "cuentos/audios/liebre.mp4"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 4,
+    "fields": {
+        "titulo": "El pastor y el lobo 🐺",
+        "portada": "cuentos/portadas/pastor.png",
+        "contenido": "Juan era un pastorcillo alegre y bromista que cuidaba de su rebaño de ovejas en un monte. Un día se aburrió tanto que se le ocurrió ponerse a gritar con todas sus fuerzas:\r\n\r\n—¡Socorro! ¡Auxilio! ¡Que alguien me ayude! ¡El lobo! ¡El lobo! ¡Ahí viene el lobo!\r\n\r\nLos campesinos que estaban trabajando cerca de Juan dejaron todo y subieron corriendo. Al verlos aparecer cansados y sudorosos, Juan soltó una carcajada: ¡Ja, ja, ja, ja, ja, ja! Los campesinos vieron que el muchacho les había gastado una broma y volvieron muy enojados a sus tareas.\r\n\r\nUnos días más tarde, Juan repitió el grito de alarma con insistencia:\r\n\r\n—¡Auxilio! ¡El lobo! ¡El lobo! ¡Que viene el lobo y se va a comer las ovejas!\r\n\r\nAunque dudaron un poco, los campesinos fueron corriendo de nuevo y por segunda vez se vieron burlados por Juan, así que se enfadaron muchísimo.\r\n\r\nDías después, llegó el lobo de verdad. Estaba hambriento y empezó a comerse las ovejas. Juan volvió a llamar a los campesinos gritando muchas veces:\r\n\r\n—¡El lobo! ¡Ha venido el lobo! ¡Socorro! ¡Socorro!\r\n\r\nLos campesinos creyeron que era una broma como las veces anteriores, y nadie acudió al llamado de Juan. Él vio cómo el lobo acababa poco a poco con su rebaño.\r\n\r\nCuando Juan les contó lo sucedido a los campesinos, estos le dijeron:\r\n\r\n—¿Qué querías que hiciéramos? Las personas que mienten no pueden esperar que los demás confíen en ellas.",
+        "audio": "cuentos/audios/videoplayback.mp4"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 5,
+    "fields": {
+        "titulo": "El león y el ratón 🦁🐭",
+        "portada": "cuentos/portadas/leon-y-raton.png",
+        "contenido": "Después de un largo día de caza, un león se echó a descansar cuando unos ratones se pusieron a jugar a su alrededor. El más travieso se metió entre la melena del león, con tan mala suerte que lo despertó.\r\n\r\n—¿Cómo te atreves a perturbar mi sueño, insignificante ratón? ¡Voy a comerte para que aprendas la lección!\r\n\r\n—Por favor, no me comas. Déjame marchar, porque puede que algún día me necesites.\r\n\r\n—Un ser tan diminuto como tú, ¿de qué forma va a ayudarme? ¡Ja! ¡No me hagas reír!\r\n\r\nEl ratón insistió tanto que el león, conmovido por su valentía, le dejó marchar. Unos días después, el ratón se encontró al león que rugía desesperado porque había quedado atrapado en una red.\r\n\r\n—¡No te preocupes, yo te salvaré!\r\n\r\nEl ratón comenzó a roer la cuerda de la red hasta que liberó al león. El león no tuvo palabras para agradecer al ratón.\r\n\r\n—Es bueno que sepas que los pequeños podemos hacer cosas por los grandes.\r\n\r\nMoraleja: No hay que menospreciar al más débil. Algún día necesitaremos su ayuda.",
+        "audio": "cuentos/audios/Fábula_del_león_y_el_ratón_para_niños.Fábulas_infantiles_con_valores.mp3"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 6,
+    "fields": {
+        "titulo": "El erizo y el globo 🎈",
+        "portada": "cuentos/portadas/erizo.png",
+        "contenido": "Hace mucho tiempo, un viejo camión atravesó el bosque por una carretera llena de baches. Por accidente, una caja se cayó del camión. Erizo, que casualmente caminaba por allí, la vio y decidió cogerla.\r\n\r\nDe camino a casa, Erizo sentía muchísima curiosidad por saber qué había dentro de la caja. Cuando al fin llegó a su madriguera, abrió la caja. Para su sorpresa, descubrió que estaba llena de globos de colores.\r\n\r\n—¡Quiero inflarlos! —dijo.\r\n\r\nSopló, sopló y sopló, pero el globo explotó al tocar las afiladas púas de Erizo. Triste, Erizo fue en busca de Conejo para pedirle ayuda. Tenía la esperanza de que él pudiera echarle una mano, pues no tenía púas.\r\n\r\n—¿Puedes ayudarme, por favor?\r\n\r\nConejo tomó mucho, mucho aire, pero al tener los dientes tan grandes, no pudo inflar el globo; solo le salía un silbido. Así que Erizo y Conejo fueron a buscar a Ardilla para pedirle ayuda. Esperaban que ella pudiera inflar los globos porque tenía los dientes más pequeños.\r\n\r\n—¿Nos puedes ayudar, por favor? Por favor.\r\n\r\nArdilla sopló y sopló. Sopló lo más fuerte que pudo, pero no consiguió inflar el globo porque era demasiado pequeña. Triste, Erizo fue con Conejo y Ardilla a buscar a su amigo Oso para pedirle ayuda. Oso era mucho más grande y seguro que podría inflar los globos.\r\n\r\n—¿Puedes ayudarnos? —le preguntaron.\r\n\r\nOso se llevó un globo a la boca, pero explotó porque era demasiado grande y fuerte. Entonces Erizo fue con Conejo, Ardilla y Oso a pedir ayuda a su amigo Búho. Él sabría qué hacer porque era muy sabio.\r\n\r\n—¿Puedes ayudarnos, por favor?\r\n\r\nBúho pensó un instante, tomó el globo y comenzó a soplar, pero no lo pudo inflar porque se le escapó de sus plumosas alas. Cansados y desilusionados, Erizo, Conejo, Ardilla, Oso y Búho se sentaron junto al lago. De repente, una rana salió del agua y les dijo:\r\n\r\n—¡Oh! ¡Globos! ¿Me dais uno?\r\n\r\nNadie pensó que podría hacerlo, pero para sorpresa de todos, pudo llenar un globo para cada uno de sus nuevos amigos.",
+        "audio": "cuentos/audios/EL_ERIZO_Y_EL_GLOBO__AUDIO_CUENTO_PARA_NIÑOS__ESPAÑOL.mp3"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 7,
+    "fields": {
+        "titulo": "La cigarra y la hormiga 🐜",
+        "portada": "cuentos/portadas/LA-HORMIGA-Y-LA-CIGARRA.png",
+        "contenido": "Había una vez una cigarra que vivía su vida siempre riendo y cantando. Tenía como vecina a una hormiga que, en lugar de relajarse, trabajaba incesantemente.\r\n\r\nUn verano, mientras la cigarra descansaba, la hormiga no paraba de trabajar. La cigarra, despreocupada, se reía de la hormiga que seguía trabajando.\r\n\r\nCuando llegó el invierno, la cigarra se dio cuenta de que no tenía nada que comer.\r\n\r\n—Señora Hormiga, ¿podría darme algo de comer?\r\n\r\n—Si hubieras trabajado, hoy tendrías comida —respondió la hormiga. Y añadió—: ¿No viste lo duro que trabajé mientras tú te divertías?\r\n\r\nLa cigarra, lamentando su actitud perezosa, se fue a buscar otro lugar para pasar el invierno.\r\n\r\nMoraleja: Hay un tiempo para todo: para trabajar y para divertirse.",
+        "audio": "cuentos/audios/Fabula_de_la_Cigarra_y_la_hormiga_para_niños._Fábula_con_valores.mp3"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 8,
+    "fields": {
+        "titulo": "El trigillo desobediente 🐯",
+        "portada": "cuentos/portadas/maxresdefault.png",
+        "contenido": "Milo era un pequeño tigrillo de un color pálido parecido al amarillo. Era muy curioso, aunque en ocasiones se podría decir que también algo perezoso. Llevado de su parecer, se creía muy valiente y a su madre desobedecía constantemente.\r\n\r\nEl ciego se hacía justo a la hora de comer; al momento de la ducha, detrás de él había que correr. Se enojaba sobre todo cuando le decían que de la casa no se alejara y regresara pronto. Pero a Milo explorar le encantaba; de la advertencia de no hacerlo, no quería saber nada.\r\n\r\nUn día, mientras jugaba en el bosque, Milo se encontró con una hermosa mariposa, tan bella e increíble que el tigrillo, a la emoción de ir tras ella, no podía resistirse. La siguió a todos lados. Sin darse cuenta, se alejó mucho más de casa que en días pasados.\r\n\r\nSu madre estaba muy preocupada y decidió salir tras él. Milo, muy emocionado, continuaba persiguiendo a la mariposa por doquier. La mariposa se posó en la rama de un árbol que estaba al lado de un arroyo. Milo trepó como pudo, aunque sus patas quedaron sin apoyo. Cuando estaba cerca de tocar la mariposa... ¡crack!, la rama se rompió y, sin esperarlo, Milo al arroyo cayó.\r\n\r\nMientras la corriente lo arrastraba, el tigrillo a su madre llamaba. En ese momento su madre apareció, se estiró y con un mordisco la cola de Milo atrapó.\r\n\r\nMilo estaba muy avergonzado y pidió disculpas por ser tan osado. Su madre le dijo que, aunque era natural ser curioso y querer explorar, también era importante recordar las reglas y los límites para así los peligros evitar.\r\n\r\nMilo prometió nunca más desobedecerla. El pequeño tigrillo nunca dejó de ser curioso y valiente, pero desde entonces siempre recordaba y obedecía a su madre, agradeciéndole por protegerlo incondicionalmente.\r\n\r\nFin",
+        "audio": "cuentos/audios/El_Tigrillo_Desobediente__Cuentos_cortos_para_niños.mp3"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 9,
+    "fields": {
+        "titulo": "El renacuajo paseador 🐸",
+        "portada": "cuentos/portadas/ab6765630000ba8a83a4d5b48b5ecdd5aa69659c.png",
+        "contenido": "El hijo de rana, Rinrín Renacuajo,\r\nsalió esta mañana muy tieso y muy majo.\r\nCon pantalón corto, corbata a la moda,\r\nsombrero encintado y chupa de boda.\r\n\r\n—¡Muchacho, no salgas! —le grita mamá,\r\npero él hace un gesto y orondo se va.\r\n\r\nHalló en el camino a un ratón vecino\r\ny le dijo: —¡Amigo! Venga usted conmigo,\r\nvisitemos juntos a doña ratona\r\ny habrá francachela y habrá comilona.\r\n\r\nA poco llegaron, y avanza el ratón,\r\nestira el cuello, coge el aldabón,\r\nda dos o tres golpes, preguntan: —¿Quién es?\r\n—Yo, doña ratona, beso a usted los pies.\r\n\r\n—¿Está usted en casa?\r\n—Sí, señor, sí estoy, y celebro mucho ver a ustedes hoy;\r\nestaba en mi oficio hilando algodón,\r\npero eso no importa; bienvenidos son.\r\n\r\nSe hicieron la venia, se dieron la mano,\r\ny dice el ratico, que es más veterano:\r\n—Mi amigo el de verde rabia de calor,\r\ndéme de cerveza, hágame el favor.\r\n\r\nY en tanto que el pillo consume la jarra,\r\nmandó la señora traer la guitarra,\r\ny a Renacuajito le pide que cante\r\nversitos alegres, tonada elegante.\r\n\r\n—¡Ay! De mil amores lo hiciera, señora,\r\npero es imposible darle gusto ahora,\r\nque tengo el gaznate más seco que estopa\r\ny me aprieta mucho esta nueva ropa.\r\n\r\n—Lo siento infinito —responde tía rata—,\r\naflojes un poco chaleco y corbata,\r\ny yo mientras tanto les voy a cantar\r\nuna cancioncita muy particular.\r\n\r\nMas estando en esta brillante función\r\nde baile y cerveza, guitarra y canción,\r\nla gata y sus gatos salvan el umbral,\r\ny vuélvese aquello el juicio final.\r\n\r\nDoña gata vieja trinchó por la oreja\r\nal niño ratico, maullándole: —¡Hola!\r\nY los niños gatos a la vieja rata\r\nuno por la pata y otro por la cola.\r\n\r\nDon Renacuajito, mirando este asalto,\r\ntomó su sombrero, dio un tremendo salto,\r\ny abriendo la puerta con mano y narices,\r\nse fue dando a todos noches muy felices.\r\n\r\nY siguió saltando tan alto y aprisa,\r\nque perdió el sombrero, rasgó la camisa,\r\nse coló en la boca de un pato tragón\r\ny este se lo embucha de un solo estirón.\r\n\r\nY así concluyeron, uno, dos y tres,\r\nratón y ratona, y el rana después;\r\nlos gatos comieron y el pato cenó,\r\ny mamá ranita solita quedó.",
+        "audio": "cuentos/audios/El_Renacuajo_Paseador_-_Rafael_Pombo_-_Rin_Rin_Renacuajo.mp3"
+    }
+},
+{
+    "model": "blootie_app.cuento",
+    "pk": 10,
+    "fields": {
+        "titulo": "Mirringa Mirronga 🐱",
+        "portada": "cuentos/portadas/maxresdefault_1.png",
+        "contenido": "¡Por fin! Ese enlace me estaba confundiendo con otros cuentos, pero ya lo leí correctamente. Aquí tienes la letra de \"Mirringa Mirronga\" de Rafael Pombo, tal cual aparece en la versión de Toy Cantando:\r\n\r\nMirringa Mirronga\r\nMirringa Mirronga, la gata candonga,\r\nva a dar un convite jugando escondite,\r\ny quiere que todos los gatos y gatas\r\nno almuercen ratones ni cenen con ratas.\r\n\r\n—A ver, mis anteojos, y pluma y tintero,\r\ny vamos poniendo las cartas primero.\r\nQue vengan las fñas y las fanfurrias,\r\ny Ñoño y Marro y Tompo y sus niñas.\r\n\r\nAhora veamos qué tal de alacena:\r\nhay pollo y pescado, la cosa está buena;\r\ny hay tortas y pollos y carne sin grasa,\r\n¡qué amable señora la dueña de casa!\r\n\r\n—Venid, mis michitos, Mirrín y Mirrón,\r\nid volando al cuarto de mamá fogón;\r\npor ocho escudillas y cuatro bandejas,\r\nque no estén rajadas, ni rotas ni viejas.\r\n\r\n—Venid, mis michitos, Mirrón y Mirrín,\r\ntraed la canasta y el dindirindín;\r\ny sape al mercado, que faltan lechugas\r\ny nabos y coles y arroz y tortuga.\r\n\r\nDecidle a mi amita que tengo visita,\r\nque no venga a verme, no sea que enferme;\r\nque mañana mismo devuelvo sus platos,\r\nque agradezco mucho y están muy baratos.\r\n\r\nCuidado, patitas, si el suelo me embarran;\r\nque quiten el polvo, que frieguen, que barran;\r\nlas flores, la mesa, la sopa...\r\n¡Ya llega la gente! ¡Jesús, qué trajín!\r\n\r\nLlegaron en coche, ya entrada la noche,\r\nseñores y damas con muchas salemas;\r\nen grande uniforme de cola y de guante,\r\ncon cuellos muy tiesos y todo elegante.\r\n\r\nAl cerrar la puerta, Mirriña la tuerta,\r\nen una cabriola se mordió la cola;\r\nmas olió el tocino y dijo: —¡Miau!\r\nEste es un banquete de pipiripau.\r\n\r\nCon muy buenos modos, sentados tomaron\r\nla sopa y alzaron la copa;\r\nel pescado frito estaba exquisito,\r\ny el pavo sin hueso era un embeleso.\r\n\r\nDe todo les brinda Mirringa Mirronga:\r\n—¿Le sirvo pechuga? —Como usted disponga.\r\n—Y yo a usted pescado, que está delicado.\r\n—Pues tanto le peta, no gaste etiqueta,\r\nrepita sin miedo. —Y él dice: —Concedo.\r\n\r\nMas ¡ay!, que una espina se le atasca indina,\r\ny Ñoña la hermosa, que es habilidosa,\r\nmetiéndole el fuelle le dice: —Resu...\r\nMirriña la cuca le golpeó en la nuca\r\ny pasó al instante la espina del diantre.\r\n\r\nSirvieron los postres y luego el café,\r\ny empezó la danza bailando un minué;\r\nhubo vals, lanceros y polca y mazurka,\r\ny Tompo, que estaba con máxima turca,\r\nenreda en las uñas el traje de Ñoña\r\ny ambos van al suelo y ella se desmoña.\r\n\r\nMaullaron de risa todos los danzantes\r\ny siguió el jaleo más alegre que antes;\r\ny gritó Mirringa: —¡Ya cerré la puerta!\r\nMientras no amanezca ninguno deserta.\r\n\r\nPero ¡qué desgracia!, entró Doña Engracia\r\ny armó un gatuperio un poquito serio,\r\ndándoles chorizo del tío pegadizo\r\npara que hagan cenas con tortas ajenas.",
+        "audio": "cuentos/audios/Mirringa_Mirronga_-_Los_Cuentos_de_Rafael_Pombo.mp3"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-05-03T01:37:34.115Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "1",
+        "object_repr": "El zapatero y los duendes",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-05-03T01:40:07.315Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "1",
+        "object_repr": "El zapatero y los duendes",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Portada\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-05-03T01:41:48.026Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "2",
+        "object_repr": "El león y el ratón",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-05-03T19:35:32.366Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "2",
+        "object_repr": "El león y el ratón",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-05-03T19:35:32.366Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "1",
+        "object_repr": "El zapatero y los duendes",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-05-03T19:57:54.252Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "3",
+        "object_repr": "La tortuga y la liebre 🐇🐢",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-05-03T20:01:55.940Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "3",
+        "object_repr": "La tortuga y la liebre  🐇🐢",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Titulo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-05-03T20:11:22.023Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "3",
+        "object_repr": "La tortuga y la liebre  🐇🐢",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-05-03T20:20:31.925Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "3",
+        "object_repr": "La tortuga y la liebre        🐇🐢",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Titulo\", \"Contenido\", \"Audio\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-05-03T20:48:20.925Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "3",
+        "object_repr": "La tortuga y la liebre        🐇🐢",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-05-03T21:00:48.882Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "4",
+        "object_repr": "El pastor y el lobo 🐺",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2026-05-03T21:07:03.969Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "5",
+        "object_repr": "El león y el ratón 🦁🐭",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2026-05-03T21:11:40.561Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "6",
+        "object_repr": "El erizo y el globo 🎈",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2026-05-03T21:15:46.421Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "7",
+        "object_repr": "La cigarra y la hormiga 🐜",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2026-05-03T21:21:12.904Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "8",
+        "object_repr": "El trigillo desobediente 🐯",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2026-05-03T21:28:12.620Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "9",
+        "object_repr": "El renacuajo paseador 🐸",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2026-05-03T21:33:32.817Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "cuento"
+        ],
+        "object_id": "10",
+        "object_repr": "Mirringa Mirronga 🐱",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2026-05-03T21:52:19.805Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "perfil"
+        ],
+        "object_id": "4",
+        "object_repr": "sofia - estudiante",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2026-05-03T21:52:24.815Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "blootie_app",
+            "perfil"
+        ],
+        "object_id": "3",
+        "object_repr": "nina1 - estudiante",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+}
+]
