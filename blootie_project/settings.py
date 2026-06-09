@@ -10,20 +10,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
-    "blootie-django-demo-key"
+    "clave-temporal-desarrollo"
 )
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS",
-    "*"
-).split(",")
+ALLOWED_HOSTS = [
+    "blootie-nsyg.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    f"https://{host}"
-    for host in ALLOWED_HOSTS
-    if host != "*"
+    "https://blootie-nsyg.onrender.com",
 ]
 
 # =========================
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,10 +57,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blootie_project.urls'
-
-# =========================
-# TEMPLATES
-# =========================
 
 TEMPLATES = [
     {
@@ -114,15 +108,11 @@ USE_I18N = True
 USE_TZ = True
 
 # =========================
-# ARCHIVOS ESTÁTICOS
+# STATIC
 # =========================
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
-
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = (
@@ -130,7 +120,7 @@ STATICFILES_STORAGE = (
 )
 
 # =========================
-# ARCHIVOS MEDIA
+# MEDIA
 # =========================
 
 MEDIA_URL = '/media/'
@@ -144,14 +134,6 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/redirigir/'
 LOGOUT_REDIRECT_URL = '/'
 
-# =========================
-# PASSWORDS
-# =========================
-
 AUTH_PASSWORD_VALIDATORS = []
-
-# =========================
-# DEFAULT FIELD
-# =========================
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
