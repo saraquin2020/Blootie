@@ -46,8 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
+    # Se eliminó WhiteNoise de aquí para que dj-static maneje static y media sin conflictos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,9 +114,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = (
-    'whitenoise.storage.CompressedManifestStaticFilesStorage'
-)
+# Se eliminó STATICFILES_STORAGE de WhiteNoise para activar la compatibilidad total
 
 # =========================
 # MEDIA
