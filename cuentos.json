@@ -5,8 +5,8 @@
     "fields": {
       "titulo": "El renacuajo paseador",
       "descripcion": "El clásico cuento de Rinrín Renacuajo.",
-      "portada": "https://i.postimg.cc/S2sFq2fQ/ab6765630000ba8a83a4d5b48b5ecdd5aa69659c.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/El_Renacuajo_Paseador_-_Rafael_Pombo_-_Rin_Rin_Renacuajo.mp3"
+      "portada": "media/cuentos/portadas/ab6765630000ba8a83a4d5b48b5ecdd5aa69659c.png",
+      "audio": "media/cuentos/audios/El_Renacuajo_Paseador_-_Rafael_Pombo_-_Rin_Rin_Renacuajo.mp3"
     }
   },
   {
@@ -15,8 +15,8 @@
     "fields": {
       "titulo": "El erizo y el globo",
       "descripcion": "La fantástica historia del erizo.",
-      "portada": "https://i.postimg.cc/KkzSFkDG/erizo.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/EL_ERIZO_Y_EL_GLOBO__AUDIO_CUENTO_PARA_NI\u00d1OS__ESPA\u00d1OL.mp3"
+      "portada": "media/cuentos/portadas/erizo.png",
+      "audio": "media/cuentos/audios/EL_ERIZO_Y_EL_GLOBO__AUDIO_CUENTO_PARA_NIÑOS__ESPAÑOL.mp3"
     }
   },
   {
@@ -25,8 +25,8 @@
     "fields": {
       "titulo": "La hormiga y la cigarra",
       "descripcion": "La valiosa lección sobre el esfuerzo y el trabajo.",
-      "portada": "https://i.postimg.cc/TLwMGLJR/LA-HORMIGA-Y-LA-CIGARRA.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/Fabula_de_la_Cigarra_y_la_hormiga_para_ni\u00f1os._F\u00e1bula_con_valores.mp3"
+      "portada": "media/cuentos/portadas/LA-HORMIGA-Y-LA-CIGARRA.png",
+      "audio": "media/cuentos/audios/Fabula_de_la_Cigarra_y_la_hormiga_para_niños._Fábula_con_valores.mp3"
     }
   },
   {
@@ -35,8 +35,8 @@
     "fields": {
       "titulo": "El león y el ratón",
       "descripcion": "Una aventura sobre la amabilidad y el respeto.",
-      "portada": "https://i.postimg.cc/DW5ktdst/leon-y-raton.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/F\u00e1bula_del_le\u00f3n_y_el_rat\u00f3n_para_ni\u00f1os.F\u00e1bulas_infantiles_con_valores.mp3"
+      "portada": "media/cuentos/portadas/leon-y-raton.png",
+      "audio": "media/cuentos/audios/Fábula_del_león_y_el_ratón_para_niños.Fábulas_infantiles_con_valores.mp3"
     }
   },
   {
@@ -45,8 +45,8 @@
     "fields": {
       "titulo": "La liebre",
       "descripcion": "La gran carrera de la constancia.",
-      "portada": "https://i.postimg.cc/06ZRLdDr/liebre.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/liebre.mp4"
+      "portada": "media/cuentos/portadas/liebre.png",
+      "audio": "media/cuentos/audios/liebre.mp4"
     }
   },
   {
@@ -55,8 +55,8 @@
     "fields": {
       "titulo": "El tigrillo desobediente",
       "descripcion": "Un cuento divertido sobre la selva.",
-      "portada": "https://i.postimg.cc/1gMhLcwt/maxresdefault.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/El_Tigrillo_Desobediente__Cuentos_cortos_para_ni\u00f1os.mp3"
+      "portada": "media/cuentos/portadas/maxresdefault.png",
+      "audio": "media/cuentos/audios/El_Tigrillo_Desobediente__Cuentos_cortos_para_niños.mp3"
     }
   },
   {
@@ -65,8 +65,8 @@
     "fields": {
       "titulo": "Mirringa Mirronga",
       "descripcion": "Una historia llena de travesuras felinas.",
-      "portada": "https://i.postimg.cc/BL69sLB0/maxresdefault-1.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/Mirringa_Mirronga_-_Los_Cuentos_de_Rafael_Pombo.mp3"
+      "portada": "media/cuentos/portadas/maxresdefault-1.png",
+      "audio": "media/cuentos/audios/Mirringa_Mirronga_-_Los_Cuentos_de_Rafael_Pombo.mp3"
     }
   },
   {
@@ -75,8 +75,8 @@
     "fields": {
       "titulo": "El pastorcito mentiroso",
       "descripcion": "La conocida fábula sobre la honestidad.",
-      "portada": "https://i.postimg.cc/TLwMGLJT/pastor.png",
-      "audio": "https://filebin.net/la29fxnq3w5irgoh/videoplayback.mp4"
+      "portada": "media/cuentos/portadas/pastor.png",
+      "audio": "media/cuentos/audios/videoplayback.mp4"
     }
   }
 ]
