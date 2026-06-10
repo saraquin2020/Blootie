@@ -8,3 +8,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blootie_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Agrégalo al final de tu settings.py
+WHITENOISE_ROOT = BASE_DIR / 'media'
