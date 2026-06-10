@@ -7,12 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # SEGURIDAD
 # =========================
-
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY",
-    "clave-temporal-desarrollo"
-)
-
+SECRET_KEY = os.environ.get("SECRET_KEY", "clave-temporal-desarrollo")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
@@ -28,7 +23,6 @@ CSRF_TRUSTED_ORIGINS = [
 # =========================
 # APPS
 # =========================
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,17 +30,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'blootie_app',
 ]
 
 # =========================
 # MIDDLEWARE
 # =========================
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # Se eliminó WhiteNoise de aquí para que dj-static maneje static y media sin conflictos
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise reactivado para los logos de la app
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,16 +69,10 @@ WSGI_APPLICATION = 'blootie_project.wsgi.application'
 # =========================
 # BASE DE DATOS
 # =========================
-
 DATABASE_URL = os.environ.get("DATABASE_URL")
-
 if DATABASE_URL:
     DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True
-        )
+        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
     }
 else:
     DATABASES = {
@@ -99,38 +85,27 @@ else:
 # =========================
 # INTERNACIONALIZACIÓN
 # =========================
-
 LANGUAGE_CODE = 'es'
 TIME_ZONE = 'America/Bogota'
-
 USE_I18N = True
 USE_TZ = True
 
 # =========================
-# STATIC
+# STATIC (Archivos base de la app)
 # =========================
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Se eliminó STATICFILES_STORAGE de WhiteNoise para activar la compatibilidad total
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # =========================
-# MEDIA
+# MEDIA (Tus portadas y audios de cuentos)
 # =========================
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# =========================
-# LOGIN
-# =========================
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/redirigir/'
 LOGOUT_REDIRECT_URL = '/'
-
 AUTH_PASSWORD_VALIDATORS = []
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
