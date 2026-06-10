@@ -38,7 +38,7 @@ INSTALLED_APPS = [
 # =========================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise reactivado para los logos de la app
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise sirve los estáticos y media en producción
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -96,7 +96,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # =========================
 # MEDIA (Tus portadas y audios de cuentos)
@@ -104,6 +103,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# =========================
+# CONFIGURACIÓN DE WHITENOISE PARA PRODUCCIÓN (ESTÁTICOS + MEDIA)
+# =========================
+# Cambiamos temporalmente a la clase estándar para que WhiteNoise acepte raíces adicionales sin romper rutas
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+WHITENOISE_ROOT = BASE_DIR / 'media'
+
+# =========================
+# REDIRECCIONES Y OTROS
+# =========================
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/redirigir/'
 LOGOUT_REDIRECT_URL = '/'
