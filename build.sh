@@ -6,5 +6,7 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
 
-# Carga la base de datos con las rutas correctas
+# Carga de datos esenciales para el Centro de Control del Profesor
+python manage.py loaddata usuarios.json
+python manage.py loaddata perfiles.json
 python manage.py loaddata cuentos.json
