@@ -3,9 +3,8 @@
 set -o errexit
 
 pip install -r requirements.txt
-
 python manage.py collectstatic --no-input
 python manage.py migrate
 
-# Este comando carga tus 8 cuentos automáticamente sin usar la Shell premium
+# Carga la base de datos con las rutas correctas
 python manage.py loaddata cuentos.json
