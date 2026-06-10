@@ -35,7 +35,7 @@
     "fields": {
       "titulo": "El león y el ratón",
       "descripcion": "Una aventura sobre la amabilidad y el respeto.",
-      "portada": "media/cuentos/portadas/leon-y-raton.png",
+      "portada": "media/cuentos/portadas/leon.png",
       "audio": "media/cuentos/audios/Fábula_del_león_y_el_ratón_para_niños.Fábulas_infantiles_con_valores.mp3"
     }
   },
